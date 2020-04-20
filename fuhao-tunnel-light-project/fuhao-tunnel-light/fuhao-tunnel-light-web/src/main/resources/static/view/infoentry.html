@@ -1,0 +1,184 @@
+<!-- body t_system start-->
+
+<div class="t_system">
+    <div class="row ">
+        <div class="col-md-12">
+            <div class="infoentry_info panel-body panel" >
+                <ul>
+                    <li class="col-md-3">
+                        <label class="col-md-4 mar_pad">所属路段：</label>
+                        <select class="entry_input col-md-7" ng-model="EventInfo.Road_ID"  >
+                            <option ng-repeat="d in RoadList" value="{{d.RoadID}}">{{d.RoadName}}</option>
+                        </select>
+                    </li>
+                    <li class="col-md-3">
+                        <label class="c_79b0 col-md-4 mar_pad">起始桩号：</label>
+                        <input type="text" class="entry_input input_padding col-md-7" ng-readonly="type" ng-model="EventInfo.Start_Stake"/>
+                    </li>
+                    <li class="col-md-3">
+                        <label class="c_79b0 col-md-4 mar_pad">终止桩号：</label>
+                        <input type="text" class="entry_input input_padding col-md-7" ng-readonly="type" ng-model="EventInfo.End_Stake"/>
+                    </li>
+                </ul>
+                <ul class="input_margin_top">
+                    <li class="col-md-3">
+                        <label class="col-md-4 mar_pad">起始时间：</label>
+                         <input size="16" type="text" ng-model="EventInfo.Start_Time" ng-readonly="type" id="datetimepicker" 
+                               class="form_datetime entry_input input_padding col-md-7" style="cursor:no-drop">
+                        <!--<input id="datetimepicker" type="text" >-->
+                    </li>
+                    <li class="col-md-3">
+                        <label class="col-md-4 mar_pad">终止时间：</label>
+                          <input size="16" type="text" ng-model="EventInfo.End_Time" ng-readonly="type" id="datetimepicker2"
+                               class="form_datetime entry_input input_padding col-md-7" style="cursor:no-drop">
+                         <!--<input id="datetimepicker2" type="text" >-->
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 ">
+            <div class="panel panel-body infoentry_info infoentry_height">
+                <ul>
+                    <li class="col-md-6">
+                        <label class="col-md-4 mar_pad">事件类型：</label>
+                        <select class=" entry_input entry_input_02 col-md-7" ng-readonly="type" ng-model="EventInfo.Event_Type">
+                            <option ng-repeat="d in EventTypeList" value="{{d.SYS_CODE}}">{{d.SYS_NAME}}</option>
+                        </select>
+                    </li>
+                    <li class="col-md-6">
+                        <label class="col-md-4 mar_pad">事件状态：</label>
+                        <select class="entry_input entry_input_05 col-md-7" ng-readonly="type" ng-model="EventInfo.Status">
+                             <option ng-repeat="d in EventStateList" value="{{d.SYS_CODE}}">{{d.SYS_NAME}}</option>
+                        </select>
+                    </li>
+                </ul>
+                <ul class="input_margin_top">
+                    <li class="col-md-6">
+                        <label class="col-md-4 mar_pad">事件车道：</label>
+                        <select class=" entry_input entry_input_02 col-md-7" ng-readonly="type" ng-model="EventInfo.Lanes">
+                            <option ng-repeat="d in EventCarList" value="{{d.SYS_CODE}}">{{d.SYS_NAME}}</option>
+                        </select>
+                    </li>
+                    <li class="col-md-6">
+                        <label class="col-md-4 mar_pad">信息来源：</label>
+                        <select class="entry_input entry_input_05 col-md-7" ng-readonly="type" ng-model="EventInfo.Event_Origin">
+                            <option ng-repeat="d in EventMessageList" value="{{d.SYS_CODE}}">{{d.SYS_NAME}}</option>
+                        </select>
+                    </li>
+                </ul>
+                                <ul class="input_margin_top">
+                    <li class="col-md-6">
+                        <label class="col-md-4 mar_pad">事件方向：</label>
+                        <select class=" entry_input entry_input_02 col-md-7" ng-readonly="type" ng-model="EventInfo.Direction">
+                            <option ng-repeat="d in RoadDirection" value="{{d.RoadDirectionName}}">{{d.RoadDirectionName}}</option>
+                        </select>
+                    </li>
+                </ul>
+
+                <ul class="input_margin_top">
+                    <li class="col-md-2">
+                        <label class="col-md-12 mar_pad">事件备注：</label>
+                        <div class="col-md-1"></div>
+
+                    </li>
+                    <li class="col-md-9">
+                        <textarea class="col-md-12 text_area text_area_01" ng-readonly="type" ng-model="EventInfo.Note"></textarea>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-body infoentry_height infoentry_info">
+                <ul>
+                    <li class="col-md-6">
+                        <label class="col-md-4 mar_pad">受伤人数：</label>
+                        <select class="entry_input entry_input_02 col-md-6" ng-readonly="type" ng-model="EventInfo.Wound_Num">
+                            <option value="0">0人</option>
+                            <option value="1">1人</option>
+                            <option value="2">2人</option>
+                            <option value="3">3人</option>
+                            <option value="4">4人</option>
+                            <option value="5">5人</option>
+                        </select>
+                    </li>
+                                        <li class="col-md-6">
+                        <label class="col-md-4 mar_pad">死亡人数：</label>
+                        <select class="entry_input entry_input_02 col-md-6" ng-readonly="type" ng-model="EventInfo.Dead_Num">
+                            <option value="0">0人</option>
+                            <option value="1">1人</option>
+                            <option value="2">2人</option>
+                            <option value="3">3人</option>
+                            <option value="4">4人</option>
+                            <option value="5">5人</option>
+                        </select>
+                    </li>
+                </ul>
+                <ul class="input_margin_top">
+
+                    <li class="col-md-6">
+                        <label class="col-md-4 mar_pad">受损车辆：</label>
+                        <select class="entry_input entry_input_05 col-md-6" ng-readonly="type" ng-model="EventInfo.DamageCar_Num">
+                            <option value="1">1辆</option>
+                            <option value="2">2辆</option>
+                            <option value="3">3辆</option>
+                            <option value="4">4辆</option>
+                            <option value="5">5辆</option>
+                        </select>
+                    </li>
+                                        <li class="col-md-6">
+                        <label class="col-md-4 mar_pad">事故类型：</label>
+                        <select class=" entry_input entry_input_02 col-md-6" ng-readonly="type" ng-model="EventInfo.Accident_Type">
+                            <option ng-repeat="d in EventTypesList" value="{{d.SYS_CODE}}">{{d.SYS_NAME}}</option>
+                        </select>
+                    </li>
+
+                </ul>
+                <ul class="input_margin_top">
+                    <li class="col-md-2">
+                        <label class="col-md-12 mar_pad">事件详情：</label>
+                        <div class="col-md-1"></div>
+
+                    </li>
+                    <li class="col-md-9">
+                        <textarea class="col-md-12 text_area" ng-readonly="type" ng-model="EventInfo.Event_Details"></textarea>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel infoentry_info infoentry_height_02 panel-body">
+                <ul>
+                    <li class="col-md-3">
+                        <label class="col-md-3 mar_pad">记录人姓名：</label>
+                        <input type="text" class="entry_input input_padding col-md-5" value="{{GetUserMessage.UserName}}" disabled="disabled"/>
+                        <!-- ng-model="EventInfo.Reserved1"-->
+                        <!-- ng-model="EventInfo.Report_Man1"-->
+                    </li>
+                    <li class="col-md-3">
+                        <label class="c_79b0 col-md-3 mar_pad">记录人编号：</label>
+                        <input type="text" class="entry_input input_padding col-md-5" value="{{GetUserMessage.UserID}}" disabled="disabled"/>
+                    </li>
+                    <li class="col-md-3">
+                        <label class="c_79b0 col-md-3 mar_pad">记录时间：</label>
+                        <input size="16" type="text" ng-model="EventInfo.Report_Time1" readonly  id="datetimepicker3"
+                               class="form_datetime entry_input input_padding col-md-5" style="cursor:no-drop">
+                    </li>
+                </ul>
+                <div class="col-md-12 save_fine">
+                    <span ng-if="!type" class="save" ng-click="SaveMessage()">保存</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!--<script type="text/javascript" src="js/pickers-init.js"></script>-->
+<!-- body t_system end-->

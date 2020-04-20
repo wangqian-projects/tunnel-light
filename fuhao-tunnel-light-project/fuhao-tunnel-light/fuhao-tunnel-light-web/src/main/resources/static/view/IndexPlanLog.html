@@ -1,0 +1,114 @@
+﻿<div class="t_system">
+    <div class="row ">
+        <div class="col-md-12">
+            <div class="infoentry_info panel-body panel" >
+                <ul class="col-md-12">
+                    <li class="col-md-3">
+                        <label class="col-md-5 mar_pad" style="width: 30%;">预案编号：</label>
+                        <input type="text" class=" col-md-5" ng-model="Plan_ID">
+                    </li>
+                    <li class="col-md-3" >
+                        <label class="col-md-5 mar_pad" style="width: 39%;"> 异常事件编号：</label>
+                        <input type="text" class=" col-md-5" ng-model="AbEvent_ID">
+                    </li>
+                    <li class="col-md-3" style="margin-left: 20px;">
+                        <label class="col-md-5 mar_pad" style="width: 30%;">运行时间：</label>
+                        <input size="16" type="text" value="" ng-model="StartTime" readonly id="datetimepicker"
+                        	class="form_datetime entry_input input_padding col-md-5" style="cursor: no-drop">
+                    </li>
+                    <li class="col-md-3" style="margin-left: -20px;">
+                        <label class="col-md-1 text-center" style="padding: 0!important;">至</label>
+                        <input size="16" type="text" value="" ng-model="EndTime" readonly id="datetimepicker2"
+                        	class="form_datetime entry_input input_padding col-md-5" style="cursor: no-drop">
+                    </li>
+                </ul>
+                <ul class="col-md-12 mar_top">
+                    <li class="col-md-3">
+                        <label class="col-md-5 mar_pad" style="width: 30%;">事件机构：</label>
+                        <select class="entry_input input_padding col-md-5" ng-model="AGENCIES_ID">
+                            <option value="">---<全部>---</option>
+                            <option ng-repeat="x in Agencies" value="{{x.AGENCIES_ID}}">{{x.AGENCIES_NAME}}</option>
+                        </select>
+                    </li>
+                    <li class="col-md-3">
+                        <label class="col-md-5 mar_pad" style="width: 30%;">所属道路：</label>
+                        <select class="entry_input input_padding col-md-5" ng-model="RoadID" style="margin-left: 22px;">
+                            <option value="">---<全部>---</option>
+                            <option ng-repeat="x in RoadList" value="{{x.RoadID}}">{{x.RoadName}}</option>
+                        </select>
+                    </li>
+                    <li class="col-md-3" style="margin-left: 20px;">
+                        <label class="col-md-5 mar_pad" style="width: 30%;">方      向：</label>
+                        <select class="entry_input input_padding col-md-5" ng-model="Direction">
+                            <option value="">---<全部>---</option>
+                            <option ng-repeat="x in RoadDirection" value="{{x.RoadDirectionName}}">{{x.RoadDirectionName}}</option>
+                        </select>
+                    </li>
+                </ul>
+                <ul class="col-md-12 mar_top">
+                    <li class="col-md-3">
+                        <label class="col-md-5 mar_pad" style="width: 30%;">告警类型：</label>
+                        <select class="entry_input input_padding col-md-5" ng-model="Warningtype">
+                            <option value="">---<全部>---</option>
+                            <option ng-repeat="x in WarningType" value="{{x.SYS_CODE}}">{{x.SYS_NAME}}</option>
+                        </select>
+                    </li>
+                    <li class="col-md-3">
+                        <label class="col-md-5 mar_pad" style="width: 30%;">告警级别：</label>
+                        <select class="entry_input input_padding col-md-5" ng-model="Warninglevel" style="margin-left: 22px;">
+                            <option value="">---<全部>---</option>
+                            <option ng-repeat="x in WarningLevel" value="{{x.SYS_CODE}}">{{x.SYS_NAME}}</option>
+                        </select>
+                    </li>
+                </ul>
+                <div class="row mar_top ">
+                    <p class=" mar_six mar_pad" style="float: right; margin-top: 20px!important;">
+                        <span ng-click="GetList(Plan_ID,AbEvent_ID,StartTime,EndTime,AGENCIES_ID,RoadID,Direction,Warningtype,Warninglevel)" class="excep_query query_but " style="cursor: pointer;">查询</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <section class="panel">
+                <div class="panel-body">
+                    <div class="adv-table">
+                        <table class="display table table-bordered table-striped" id="dynamic-table">
+                            <thead>
+                                <tr>
+                                    <th>预案名称</th>
+                                    <th>异常事件编号</th>
+                                    <th class="hidden-phone">运行时间</th>
+                                    <th class="hidden-phone">道路名称</th>
+                                    <th class="hidden-phone">道路方向</th>
+                                    <th class="hidden-phone">事件类型</th>
+                                    <th class="hidden-phone">事件级别</th>
+                                    <th class="hidden-phone">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="group_one">
+                                <tr class="gradeX" ng-repeat="d in data">
+                                    <td>{{d.Plan_Name}}</td>
+                                    <td>{{d.AbEvent_ID}}</td>
+                                    <td class="center hidden-phone">{{d.Run_Time}}</td>
+                                    <td class="center hidden-phone">{{d.RoadName}}</td>
+                                    <td class="center hidden-phone">{{d.Deal_Flag}}</td>
+                                    <td class="center hidden-phone">{{d.Event_Type_Name}}</td>
+                                    <td class="center hidden-phone">{{d.Event_Level_Name}}</td>
+                                    <td class="center hidden-phone bton">
+                                        <span class="excep_query" ng-click="DeviceExecutionLog(d.ExecutionID,d.AGENCIES_ID)">详情</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-lg-12">
+                      <tm-pagination conf="paginationConf"></tm-pagination>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+

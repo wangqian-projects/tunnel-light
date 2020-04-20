@@ -1,0 +1,66 @@
+<div class="t_system">
+      <div class="row ">
+        <div class="col-md-12">
+            <div class="infoentry_info panel-body panel">
+                <ul class="col-md-12">
+                    <li class="col-md-3">
+                        <label class="col-md-5 mar_pad">用户姓名：</label>
+                        <input type="text" ng-model="UsName" class="col-md-5">
+                    </li>
+                </ul> 
+                <div class="row mar_top ">
+                    <p class=" mar_six mar_pad" style="float: right; margin-top: 20px!important;">
+                        <span ng-click="GetList(UsName)" class="excep_query query_but " style="cursor: pointer;">查询</span>
+                        <span ng-click="AddUsers()" class="excep_query query_but " style="cursor: pointer;">新增</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <section class="panel">
+                <div class="col-md-12">
+                </div>
+                <div class="panel-body">
+                    <div class="adv-table">
+                        <table class="display table table-bordered table-striped" id="dynamic-table">
+                            <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>姓名</th>
+                                    <th>性别</th>
+                                    <th class="hidden-phone">年龄</th>
+                                    <th class="hidden-phone">联系方式</th>
+                                    <th class="hidden-phone">用户角色</th>
+                                    <th class="hidden-phone">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="group_one">
+                                <tr class="gradeX" ng-repeat="d in data track by $index">
+                                    <td>{{$index+1}}</td>
+                                    <td>{{d.UserName}}</td>
+                                    <td>{{d.Sex}}</td>
+                                    <td class="center hidden-phone">{{d.Age}}</td>
+                                    <td class="center hidden-phone">{{d.Phone}}</td>
+                                    <td class="center hidden-phone">{{d.PowerName}}</td>
+                                    <td class="center hidden-phone operate">
+                                        <span ng-click="Update(d.ID)">修改</span>
+                                        <span ng-click="Delete(d)">删除</span>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-lg-12">
+                       <tm-pagination conf="paginationConf"></tm-pagination>
+                        <!-- <span class="col-md-2 mar_pad"><em class="excel">导出Excel</em></span>-->
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </div>
+
+</div>

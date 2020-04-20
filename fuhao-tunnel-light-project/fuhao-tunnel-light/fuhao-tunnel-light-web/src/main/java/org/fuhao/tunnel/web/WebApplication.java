@@ -1,12 +1,12 @@
-package org.fuhao.tunnel-light.web;
+package org.fuhao.tunnel.web;
 
 import lombok.extern.slf4j.Slf4j;
+import org.fuhao.tunnel.tools.utils.GlobalConfig;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.ComponentScan;
-import org.fuhao.tunnel-light.tools.utils.GlobalConfig;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;

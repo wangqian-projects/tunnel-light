@@ -1,0 +1,89 @@
+<div class="t_system">
+    <div class="row ">
+        <div class="col-md-12">
+            <div class="infoentry_info panel-body panel">
+                <ul>
+                    <li class="col-md-3">
+                        <label class="col-md-4 mar_pad">路段名称：</label>
+                        <select class="entry_input col-md-7" ng-model="Road_ID">
+                            <option ng-repeat="d in RoadList" value="{{d.RoadID}}">{{d.RoadName}}</option>
+                        </select>
+                    </li>
+                    <li class="col-md-3">
+                        <label class="col-md-4 mar_pad">事件类型：</label>
+                        <select class="entry_input col-md-7" ng-model="Event_Type">
+                            <option ng-repeat="d in EventTypeList" value="{{d.SYS_CODE}}">{{d.SYS_NAME}}</option>
+                        </select>
+                    </li>
+                    <li class="col-md-3">
+                        <label class="col-md-4 mar_pad">起始时间：</label>
+                        <input size="16" type="text" ng-model="Start_Time" readonly id="datetimepicker"
+                            class="form_datetime entry_input input_padding col-md-8" style="cursor: no-drop">
+                    </li>
+                    <li class="col-md-3">
+                        <label class="col-md-1 mar_pad text-center">- </label>
+                        <input size="16" type="text" ng-model="End_Time" readonly id="datetimepicker2"
+                            class="form_datetime entry_input input_padding col-md-8" style="cursor: no-drop">
+                    </li>
+                </ul>
+                            <div class="row mar_top ">
+                <p class=" mar_six mar_pad" style="float: right; margin-top: 20px!important;">
+                    <span class="excep_query query_but " style="cursor: pointer;" ng-click="GetList(Road_ID,Event_Type,Start_Time,End_Time)">查询</span>
+                </p>
+            </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <section class="panel">
+
+                <div class="panel-body">
+                    <div class="adv-table">
+                        <table class="display table table-bordered table-striped" id="dynamic-table">
+                            <thead>
+                                <tr>
+                                    <th>路段名称</th>
+                                    <th>开始时间</th>
+                                    <th>开始桩号</th>
+                                    <th class="hidden-phone">结束时间</th>
+                                    <th class="hidden-phone">结束桩号</th>
+                                    <th class="hidden-phone">事件类型</th>
+                                    <th class="hidden-phone">事件方向</th>
+                                    <th class="hidden-phone">事件状态</th>
+                                    <th class="hidden-phone">记录时间</th>
+                                    <th class="hidden-phone">记录人</th>
+                                    <th class="hidden-phone">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="group_one">
+                                <tr class="gradeX" ng-repeat="d in List">
+                                    <td>{{d.Road_Name}}</td>
+                                    <td>{{d.Start_Time}}</td>
+                                    <td>{{d.Start_Stake}}</td>
+                                    <td class="center hidden-phone">{{d.End_Time}}</td>
+                                    <td class="center hidden-phone">{{d.End_Stake}}</td>
+                                    <td class="center hidden-phone">{{d.Event_Type_Name}}</td>
+                                    <td class="center hidden-phone">{{d.Direction}}</td>
+                                    <td class="center hidden-phone">{{d.Status_Name}}</td>
+                                    <td class="center hidden-phone">{{d.Report_Time1}}</td>
+                                    <td class="center hidden-phone">{{d.Report_Man1}}</td>
+                                    <td class="center hidden-phone">
+                                        <span class="excep_query excep_query2" ng-click="Search(d.Event_ID)">详情</span>
+                                        <span class="excep_query excep_query2" ng-click="Update(d.Event_ID)">修改</span>
+                                        <span class="excep_query excep_query2" ng-click="Delete(d)">删除</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-lg-12">
+                        <tm-pagination conf="paginationConf"></tm-pagination>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </div>
+
+</div>

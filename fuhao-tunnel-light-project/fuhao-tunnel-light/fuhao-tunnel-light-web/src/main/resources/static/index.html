@@ -1,253 +1,377 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="fuhao tunnel-light">
-    <title>index | fuhao tunnel-light</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<!--    <link rel="shortcut icon" href="#" type="image/png">-->
+    <link rel="shortcut icon" href="images/bitbug_favicon.ico" >    
+    <title>高速公路交通监控系统</title>
+    <!--icheck-->
+    <link href="css/minimal.css" rel="stylesheet">
+    <link href="css/square.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/traffic.css" />
+    <!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">	
+		<!--common-->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/style-responsive.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/swiper.min.css" />
+    <link href="css/sweetalert.css" rel="stylesheet" />
+    <link href="css/animate.min.css" rel="stylesheet" />
+    <link href="css/testcss.css" rel="stylesheet" />
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet"/>
+    <style>
+        @media (max-width:1920px) {
+            .map img {
+                width: 88%;
+            }
+        }
 
-    <link rel="stylesheet" href="base/css/pure-min.css"/>
-    <link rel="stylesheet" href="base/css/grids-responsive-min.css"/>
-    <link rel="stylesheet" href="base/css/font-awesome.min.css"/>
-    <link rel="stylesheet" href="main/css/styles.css"/>
+        @media (max-width:1680px) {
+            .map img {
+                width: 86%;
+            }
+        }
+
+        @media (max-width:1366px) {
+            .map img {
+                width: 83%;
+            }
+        }
+    </style>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+  <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
 </head>
-<body>
-<div id="wrapper">
-    <div class="headerWrap"></div>
-    <div class="banner">
-        <div class="banner-content">
-            <h1>Welcome to fuhao tunnel-light</h1>
-            <h3>I offer you the bitterness of a man who has looked long and long at the lonely moon.</h3>
+
+<body class="sticky-header" ng-app="starter">
+    <section class="section">
+        <!--<div ng-include="'view/components/leftMenu.html'"></div>-->
+        <!-- left side start-->
+        <div class="left-side sticky-left-side left_position" style="z-index: 999999;">
+            <!--logo and iconic logo start-->
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo.png" alt=""></a>
+            </div>
+            <div class="logo-icon text-center">
+                <a href="index.html">
+                    <img src="images/logo_icon.png" alt=""></a>
+            </div>
+            <!--logo and iconic logo end-->
+            <div class="left-side-inner">
+                <!-- visible to small devices only -->
+                <div class="visible-xs hidden-sm hidden-md hidden-lg">
+                    <div class="media logged-user">
+                        <img alt="" src="images/user-avatar.png" class="media-object">
+
+                        <div class="media-body">
+
+                            <h4><a href="#">管理员</a></h4>
+
+                            <span>"Hello There..."</span>
+
+                        </div>
+
+                    </div>
+
+                    <h5 class="left-nav-title">Account Information</h5>
+
+                    <ul class="nav nav-pills nav-stacked custom-nav">
+
+                        <li>
+                            <a href="#"><i class="fa fa-user"></i><span>Profile</span></a>
+                        </li>
+
+                        <li>
+                            <a href="#"><i class="fa fa-cog"></i><span>Settings</span></a>
+                        </li>
+
+                        <li>
+                            <a href="#"><i class="fa fa-sign-out"></i><span>Sign Out</span></a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+                <!--sidebar nav start-->
+
+                <ul class="nav nav-pills nav-stacked custom-nav">
+
+                    <li class="active">
+                        <a href="#/indexMap"><i class="fa fa-home fa-lg" aria-hidden="true"></i><span>首页</span></a>
+                    </li>
+                    <li class="menu-list">
+                        <a href=""><i class="fa fa-stack-exchange"></i><span>信息管理</span></a>
+
+                        <ul class="sub-menu-list">
+
+                            <li>
+                                <a href="#/infoentry/null/null">信息录入</a>
+                            </li>
+
+                            <li>
+                                <a href="#/infomaintain">信息维护</a>
+                            </li>
+
+                           <!-- <li>
+                                <a href="#/exceptionhand">异常事件处理</a>
+                            </li>-->
+                        </ul>
+
+                    </li>
+                    <li class="menu-list">
+                        <a href=""><i class="fa fa-road"></i><span>预案管理</span></a>
+
+                        <ul class="sub-menu-list">
+                            <li>
+                                <a href="#/casesearchresult">预案管理</a>
+                            </li>
+                            <li>
+                                <a href="#/caseedit">报警事件管理</a>
+                            </li>
+
+                            <li>
+                                <a href="#/IndexPlanLog">预案日志管理</a>
+                            </li>
+                        </ul>
+
+                    </li>
+                    <li class="menu-list">
+                        <a href=""><i class="fa fa-road fa-search"></i><span>数据查询</span></a>
+                        <ul class="sub-menu-list">
+                            <li>
+                                <a href="#/reports/vedetstatementsearch">车辆检测器数据查询</a>
+                            </li>
+                            <li>
+                                <a href="#/reports/trafficstatmentsearch">交通调查站数据查询</a>
+                            </li>
+                            <li>
+                                <a href="#/reports/weatherstatementsearch">气象检测器数据查询</a>
+                            </li>
+                            <li>
+                                <a href="#/reports/incidentstatementsearch">事件信息查询</a>
+                            </li>
+                            <li>
+                                <a href="#/reports/covistatmentsearch">COVI数据查询</a>
+                            </li>
+                            <li>
+                                <a href="#/reports/restrictedstatmentsearch">能见度数据查询</a>
+                            </li>
+                            <li>
+                                <a href="#/reports/lightstatmentsearch">光强数据查询</a>
+                            </li>
+                            <li>
+                                <a href="#/reports/logsearch">情报板发布信息查询</a>
+                            </li>
+                            <li>
+                                <a href="#/reports/logsearch">日志查询</a>
+                            </li>
+                        </ul>
+
+                    </li>
+                    <li class="menu-list">
+                        <a href=""><i class="fa fa fa-building-o"></i><span>统计报表</span></a>
+                        <ul class="sub-menu-list">
+                            <li>
+                                <a href="#/reports/vedetstatement">车辆检测器日\月\年报表</a>
+                            </li>
+                            <li>
+                                <a href="#/reports/trafficstatment">交通调查站日\月\年报表</a>
+                            </li>
+                            <li>
+                                <a href="#/reports/weatherstatement">气象检测器日\月\年报表</a>
+                            </li>
+                            <li>
+                                <a href="#/reports/incidentstatement">事件统计日\月\年报表</a>
+                                <!--                            </li>
+                            <li>
+                                <a href="#/reports/analyzestatment">事件分析日\月\年报表</a>
+                            </li>-->
+                                <li>
+                                    <a href="#/reports/covistatment">COVI日\月\年报表</a>
+                                </li>
+                            <li>
+                                <a href="#/reports/restrictedstatment">能见度日\月\年报表</a>
+                            </li>
+                            <li>
+                                <a href="#/reports/lightstatment">光强日\月\年报表</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="menu-list">
+                        <a href=""><i class="fa fa fa-bar-chart-o"></i><span>图表展示</span></a>
+
+                        <ul class="sub-menu-list">
+                            <li>
+                                <a href="#/charts/distrigraph">微波车监测流量分布图</a>
+                            </li>
+                            <li>
+                                <a href="#/charts/stationgraph">交调站分布图</a>
+                            </li>
+                            <li>
+                                <a href="#/charts/weathergraph">气象检测器分布图</a>
+                            </li>
+                            <li>
+                                <a href="#/charts/covigraph">COVI分布图</a>
+                            </li>
+                            <li>
+                                <a href="#/charts/visibilitygraph">能见度检测器分布图</a>
+                            </li>
+                            <li>
+                                <a href="#/charts/lightgraph">光强分布图</a>
+                            </li>
+                            <li>
+                                <a href="#/charts/windgraph">风速风向检测器分布图</a>
+                            </li>
+
+                        </ul>
+
+                    </li>
+                    <li class="menu-list" id="PeopleShow">
+                        <a href=""><i class="fa fa-user"></i><span>人员管理</span></a>
+                        <ul class="sub-menu-list">
+                            <li>
+                                <a href="#/peoplemanagement">人员管理</a>
+                            </li>
+                        </ul>
+
+                    </li>
+
+                </ul>
+
+                <!--sidebar nav end-->
+
+            </div>
+
         </div>
-    </div>
-    <div id="content" class="index">
-        <div class="pure-g">
-
-            <div class="pure-u-1 pure-u-md-1-2">
-                <div class="l-box">
-                    <h2>
-                        <a href="/tunnel-light/" class="atom"><i class="fa fa-rss"></i></a>
-                        Project News
-                    </h2>
-                    <ul class="home-list">
-
-                        <li>
-                            <time class="nowTime"></time>
-                            <a href=""> a wlte static new 0 </a></li>
-
-                        <li>
-                            <time>2017-05-24</time>
-                            <a href=""> a wlte static new 1 </a></li>
-
-                        <li>
-                            <time>2017-05-24</time>
-                            <a href=""> a wlte static new 2 </a></li>
-
-                        <li>
-                            <time>2017-05-24</time>
-                            <a href=""> a wlte static new 3 </a></li>
-
-                        <li>
-                            <time>2017-05-24</time>
-                            <a href=""> a wlte static new 4 </a></li>
-
-                        <li>
-                            <time>2017-05-24</time>
-                            <a href=""> a wlte static new 5 </a></li>
-
-                        <li>
-                            <time>2017-05-24</time>
-                            <a href=""> a wlte static new 6 </a></li>
-
-                        <li>
-                            <time>2017-05-24</time>
-                            <a href=""> a wlte static new 7 </a></li>
-
-                    </ul>
-                    <a class="pure-button read-more" href="/">Read more</a>
-                </div>
-            </div>
-
-            <div class="pure-u-1 pure-u-md-1-2">
-                <div class="l-box">
-                    <h2>
-                        <a href="/" class="excellent-articles">
-                            <i class="fa fa-file-text-o"></i>
-                        </a>
-                        Excellent Articles
-                    </h2>
-                    <ul class="home-list">
-
-                        <li>
-                            <time datetime="2018-03-11T23:00:55+00:00">2018-03-11</time>
-                            <a href="main/page/projects/uuid-online.html"> excellent articles 0 </a></li>
-
-                        <li>
-                            <time datetime="2018-03-11T23:00:55+00:00">2018-03-11</time>
-                            <a href="main/page/projects/uuid-online.html"> excellent articles 1 </a></li>
-
-                        <li>
-                            <time datetime="2018-03-11T23:00:55+00:00">2018-03-11</time>
-                            <a href="main/page/projects/uuid-online.html"> excellent articles 2 </a></li>
-
-                        <li>
-                            <time datetime="2018-03-11T23:00:55+00:00">2018-03-11</time>
-                            <a href="main/page/projects/uuid-online.html"> excellent articles 3 </a></li>
-
-                        <li>
-                            <time datetime="2018-03-11T23:00:55+00:00">2018-03-11</time>
-                            <a href="main/page/projects/uuid-online.html"> excellent articles 4 </a></li>
-
-                        <li>
-                            <time datetime="2018-03-11T23:00:55+00:00">2018-03-11</time>
-                            <a href="main/page/projects/uuid-online.html"> excellent articles 5 </a></li>
-
-                        <li>
-                            <time datetime="2018-03-11T23:00:55+00:00">2018-03-11</time>
-                            <a href="main/page/projects/uuid-online.html"> excellent articles 6 </a></li>
-
-                        <li>
-                            <time datetime="2018-03-11T23:00:55+00:00">2018-03-11</time>
-                            <a href="main/page/projects/uuid-online.html"> excellent articles 7 </a></li>
-
-                    </ul>
-                    <a class="pure-button read-more" href="/">Read more</a>
-                </div>
-            </div>
-
-        </div> <!-- end pure-g -->
-    </div> <!-- end content -->
-    <div class="footerWrap"></div>
-</div> <!-- end wrapper -->
-<script src="base/js/jquery.min.js"></script>
-<script src="base/js/common.js"></script>
-<script src="base/js/intervalBackImg.js"></script>
-<script>
-    (function ($) {
-        $(".nowTime").text(formatDate(new Date(Date.now())));
-
-        var getMonthWeek = function (a, b, c) {
-            var date = new Date(a, parseInt(b) - 1, c),
-                w = date.getDay(),
-                d = date.getDate();
-            return Math.ceil((d + 6 - w) / 7);
-        };
-
-        var restaurants = ["腾讯希格玛", "骨汤菜饭", "快乐E族", "大排饭", "山西面馆"];
-        toLunch(restaurants);
-
-        function toLunch(restaurant) {
-            var today = new Date();
-            var y = today.getFullYear();
-            var m = today.getMonth() + 1;
-            var d = today.getDate();
-            var WeekOfMonth = today.getHours() < 14 ? getMonthWeek(y, m, d) : getMonthWeek(y, m, d) + 10;
-            var dayOfWeek = today.getDay() - 1; //日:-1 一:0 六:5
-
-            var key = "@" + WeekOfMonth + "week" + m + "month" + y + "year";
-            var fuzzy = truncate(key.split(''), restaurant.length).split('');
-
-            var depth = fuzzy.length;
-            var precise = [];
-            var cursor = 0;
-            while (cursor < depth) {
-                var min;
-                var k = 0;
-                for (; k < depth; k++) {
-                    var v = fuzzy[k];
-                    if (v != null) {
-                        min = fuzzy[k];
-                        break;
+        <!-- left side end-->
+        <!-- main content start-->
+        <div class="main-content">
+            <div ng-include="'view/components/header.html'" ng-hide=""></div>
+            <div ng-view></div>
+        </div>
+    </section>
+    <!-- Placed js at the end of the document so the pages load faster -->
+    <script src="js/jquery-1.10.2.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/modernizr.min.js"></script>
+    <script src="js/jquery.nicescroll.js"></script>
+    <script src="js/handlebars.min.js"></script>
+    <script src="http://www.lanrenzhijia.com/ajaxjs/jquery.page.js"></script>
+    <!--common scripts for all pages-->
+    <script src="js/scripts.js"></script>
+    <script type="text/javascript" src="js/swiper.min.js"></script>
+    <script type="text/javascript" src="js/traffic.js"></script>
+    <!--my-->
+    <script src="js/my/drag.js"></script>
+    <script src="js/sweetalert.min.js"></script>
+    <script src="js/echarts.common.min.js"></script>
+    <script src="js/my/angular.min.js"></script>
+    <script src="js/my/angular-route.js"></script>
+    <script src="js/my/tm.pagination.js"></script>
+    <script src="js/my/common.js"></script>
+    <script src="js/my/app.js"></script>
+    <script src="js/my/ctrl.js"></script>
+    <script src="js/my/reportsCtrl.js"></script>
+    <script src="js/my/chartsCtrl.js"></script>
+    <script src="js/my/PeopleCtrl.js"></script>
+    <script src="js/my/service.js"></script>
+    <script src="js/my/EventManage.js"></script>
+    <script src="js/bootstrap-datetimepicker.js" type="text/javascript"></script>
+    <script>
+        $(function () {
+            var SencondTime = 30;//时间间隔
+            GetEventReadFlag();
+            setInterval(GetEventReadFlag, SencondTime * 1000);
+            PeopleShow();
+        });
+        function GetEventReadFlag() {
+            var ShowTime = 10;//弹窗显示事件
+            $.ajax({
+                type: 'get',
+                url: '/JTJK/Ashx/index.ashx',
+                async: false,
+                data: { type: "AbnormalEventReadFlagUpdate" },
+                success: function (data) {
+                    var data = JSON.parse(data);
+                    for (var i = 0; i < data.length; i++) {
+                        new WarningAlert(ShowTime, i, data[i], function () {
+                            //  console.log(i);
+                        })
                     }
                 }
-                var reamer = min;
-                var tempV;
-                for (var fu_i = 0; fu_i < depth; fu_i++) {
-                    if (fu_i === k) {
-                        continue;
+            })
+
+        }
+        function WarningAlert(seconds, count, data, callback) {
+            var _this = this;
+            if (count == undefined) {
+                count = 0;
+            }
+            if (seconds == undefined) {
+                seconds = 10;
+            }
+            var bottom = count * 200 + 10;
+            var timer = null;
+            _this.html = '';
+            _this.seconds = seconds;
+            this.createAlert = function () {
+                _this.html = $('<div style="bottom:' + bottom + 'px;" class="text-center alert-wrap btn-close"><p>在' + data.RoadName + '' + data.Event_Direction + '方向' + data.Event_Stake + '位置,发生' + data.Event_Type_Name + '告警,告警内容为' + data.Event_details + '</p>' +
+                        '<p class="left-bot"><span class="countDown" style="font-size: 13px; color: #f00">' + _this.seconds + '</span>秒后窗口自动关闭</p>' +
+                        '<button class="right-bot btn btn-danger" ><a href="#WarningPage/' + data.ID + '">查看详情</a></button>' +
+                        '</div>');
+                $('body').append(this.html);
+                _this.html.bind('click', function () {
+                    _this.removeAlert(_this.html);
+                });
+                _this.timeCountDown();
+                _this.html.find('button').bind('click', function (e) {
+                    e.stopPropagation();
+                    if (typeof callback == 'function') {
+                        callback();
                     }
-                    var temp = fuzzy[fu_i];
-                    if (temp != null && temp < min) {
-                        min = temp;
-                        tempV = fu_i;
+                })
+            };
+            this.removeAlert = function (obj) {
+                $(obj).remove();
+                clearInterval(timer);
+            };
+            this.timeCountDown = function () {
+                var seconds = _this.seconds;
+                timer = setInterval(function () {
+                    seconds--;
+                    _this.html.find('.countDown').text(seconds);
+                    if (seconds < 0) {
+                        clearInterval(timer);
+                        _this.removeAlert(_this.html);
+                    }
+                }, 1000);
+            };
+            this.init = function () {
+                _this.createAlert();
+            };
+            this.init();
+        }
+        function PeopleShow() {
+            $.ajax({
+                type: 'get',
+                url: '/JTJK/Ashx/login.ashx',
+                async: false,
+                data: { type: "GetPowerID" },
+                success: function (data) {
+                    if (data == 1 || data == 4) {
+                        $("#PeopleShow").show();
+                    } else {
+                        $("#PeopleShow").hide();
                     }
                 }
-                if (reamer === min) {
-                    precise[k] = cursor;
-                    fuzzy[k] = null;
-                } else {
-                    precise[tempV] = cursor;
-                    fuzzy[tempV] = null;
-                }
-                cursor++;
-            }
-
-            if (depth < 7 && dayOfWeek >= depth) {
-                dayOfWeek >>= (WeekOfMonth % (WeekOfMonth === 3 ? 2 : 3));
-            }
-
-            $("#lunch").text(restaurant[precise[Math.abs(dayOfWeek)]]);
-
+            })
         }
-
-        /**
-         * 截断
-         */
-        function truncate(target, digits) {
-            //量级
-            var DIGITS_POWER = [1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000];
-            var result;
-            var offset = target[target.length - 1] & 0xf;
-            var binary = ((target[offset] & 0x7f) << 24)
-                | ((target[offset + 1] & 0xff) << 16)
-                | ((target[offset + 2] & 0xff) << 8) | (target[offset + 3] & 0xff);
-            var otp = binary % (DIGITS_POWER[digits]);
-            result = "" + otp;
-            while (result.length < digits) {
-                result = "0" + result;
-            }
-            return result;
-        }
-
-
-        function formatDate(now) {
-            var year = now.getFullYear();
-            var month = now.getMonth() + 1;
-            var date = now.getDate();
-
-            var month_head = month < 10 ? "0" : "";
-            var date_head = date < 10 ? "0" : "";
-
-            var week = "星期";
-            switch (now.getDay()) {
-                case 0:
-                    week += "日";
-                    break;
-                case 1:
-                    week += "一";
-                    break;
-                case 2:
-                    week += "二";
-                    break;
-                case 3:
-                    week += "三";
-                    break;
-                case 4:
-                    week += "四";
-                    break;
-                case 5:
-                    week += "五";
-                    break;
-                case 6:
-                    week += "六";
-                    break;
-            }
-
-            return year + "-" + month_head + month + "-" + date_head + date + "   " + week;
-        }
-
-    })(jQuery);
-</script>
+    </script>
 </body>
 </html>
-        

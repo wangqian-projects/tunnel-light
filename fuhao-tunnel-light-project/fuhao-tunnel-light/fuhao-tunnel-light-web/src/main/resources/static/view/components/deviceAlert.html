@@ -1,0 +1,1330 @@
+<!--隧道照明控制-->
+<script id="device_0" type="text/x-handlebars-template">
+    <div class="scrn_back" id="alert_device_0">
+        <div class="lane_pointer">
+            <p class="lock_colse lock_colse_lane"></p>
+            <h1 class="inte_h1">隧道照明控制</h1>
+            <div class="legend_title">
+                <p>设备在线状态：<em class="c_6d">{{CONNECT_STATE}}</em></p>
+            </div>
+            <div class="inte_legend inte_legend_lane inte_tunnel">
+                <div class="tunnel-light">
+                    <p>隧道照明当前状态：</p><span id="tun"></span><em id="tunnel_img" class=""></em>
+                </div>
+            </div>
+            <div class="legend_title">
+                <p>设备控制：<em class="{{colorClass}}">{{CONNECT_STATE_KZ}}</em></p>
+            </div>
+            <div class="inte_legend inte_legend_lane2 inte_control2 inte_tunnel2">
+                <ul id="tunnel_back">
+                    <li>
+                        <em></em>
+                        <div class="control_input lane_input">
+                            <span></span>
+                            <i>开启</i>
+                        </div>
+                    </li>
+                    <li>
+                        <em></em>
+                        <div class="control_input lane_input">
+                            <span></span>
+                            <i>关闭</i>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="hint_size hint_tunne">提示：当照明回路控制柜状态为本地控制模式时，在中心不可控。</div>
+            <div class="lane_but">
+                <span class="lane_ok">确认</span>
+                <span class="lane_no">取消</span>
+            </div>
+        </div>
+    </div>
+</script>
+<script id="device_16" type="text/x-handlebars-template">
+    <div class="scrn_back" id="alert_device_16">
+        <div class="inte_door">
+            <p class="lock_colse lock_colse_1"></p>
+            <h1 class="inte_h1">气象检测器查询</h1>
+            <div class="legend_title">
+                <p>设备信息：</p>
+            </div>
+            <div class="inte_legend">
+
+                <ul class="legend_menu">
+                    <li>
+                        <label>设备名称：</label>
+                        <input type="" disabled="disabled" value="{{DEVICE_NAME}}"/>
+                    </li>
+                    <li>
+                        <label>设备位置：</label>
+                        <input type="" disabled="disabled" value="{{DEVICE_ID}}" id="DEVICE_ID"/>
+                    </li>
+                </ul>
+            </div>
+            <div class="legend_title">
+                <p>设备数据：<em class="{{colorClass}}">{{CONNECT_STATE}}</em></p>
+            </div>
+            <div class="inte_legend inte_conver">
+                <ul class="legend_menu weather-ul">
+                    <li>
+                        <label>风速：</label>
+                        <input type="" disabled="disabled" value="{{WindSpeed}}"/>
+                    </li>
+                    <li>
+                        <label>风向：</label>
+                        <input type="" disabled="disabled" value="{{WindDirection}}"/>
+                    </li>
+                    <li>
+                        <label>大气温度：</label>
+                        <input type="" disabled="disabled" value="{{Temperature}}"/>
+                    </li>
+                    <li>
+                        <label>能见度：</label>
+                        <input type="" disabled="disabled" value="{{Visibility}}"/>
+                    </li>
+                    <li>
+                        <label>降雨量：</label>
+                        <input type="" disabled="disabled" value="{{Rainfall}}"/>
+                    </li>
+                    <li>
+                        <label>相对湿度：</label>
+                        <input type="" disabled="disabled" value="{{Humidity}}"/>
+                    </li>
+                    <li>
+                        <label>路面温度：</label>
+                        <input type="" disabled="disabled" value="{{RoadTemperature}}"/>
+                    </li>
+                    <li>
+                        <label>地表状态：</label>
+                        <input type="" disabled="disabled" value="{{SurfaceState}}"/>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</script>
+<!--情报板弹窗-->
+<script id="device_1" type="text/x-handlebars-template">
+    <div class="scrn_back" id="alert_device_1">
+        <div class="inte_door">
+            <p class="lock_colse lock_colse_1"></p>
+            <h1 class="inte_h1">信息发布</h1>
+            <div class="legend_title">
+                <p>设备信息：</p>
+            </div>
+            <div class="inte_legend">
+
+                <ul class="legend_menu">
+                    <li>
+                        <label>设备名称：</label>
+                        <input type="" disabled="disabled" value="{{DEVICE_NAME}}"/>
+                    </li>
+                    <li>
+                        <label>设备编号：</label>
+                        <input type="" disabled="disabled" value="{{DEVICE_ID}}" id="DEVICE_ID"/>
+                    </li>
+                    <li>
+                        <label>设备厂商：</label>
+                        <input type="" disabled="disabled" value="{{COMPANY_NAME}}"/>
+                    </li>
+                    <li>
+                        <label>归属路段：</label>
+                        <input type="" disabled="disabled" value="{{AGENCIES_NAME}}"/>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="legend_title">
+                <p>设备在线状态：<em class="c_6d">{{CONNECT_STATE}}</em></p>
+            </div>
+            <div class="inte_legend inte_conver">
+                <div class="inte_ban" id="inte_ban">
+                    <pre class="animated" id="info-txt"></pre>
+                </div>
+                <ul class="legend_menu">
+                    <li>
+                        <label>显示时间：</label>
+                        <select id="edit-delay">
+                            <option value="立即显示">0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </select>
+                    </li>
+                    <li>
+                        <label>背景颜色：</label>
+                        <select id="edit-bgcolor">
+                            <option>透明色</option>
+                            <option>黑色</option>
+                            <option>蓝色</option>
+                            <option>绿色</option>
+                            <option>红色</option>
+                            <option>黄色</option>
+                            <option>紫色</option>
+                            <option>青色</option>
+                            <option>琥珀色</option>
+                        </select>
+                    </li>
+                    <li>
+                        <label>字体大小：</label>
+                        <select id="edit-size">
+                            <option>16</option>
+                            <option>24</option>
+                            <option>32</option>
+                            <option>48</option>
+                            <option>64</option>
+                            <option>98</option>
+                        </select>
+                    </li>
+                    <li>
+                        <label>字体颜色：</label>
+                        <select id="edit-color">
+                            <option>黄色</option>
+                            <option>红色</option>
+                            <option>黑色</option>
+                            <option>绿色</option>
+                            <option>蓝色</option>
+                            <option>紫色</option>
+                            <option>青色</option>
+                            <option>琥珀色</option>
+                        </select>
+                    </li>
+                    <li>
+                        <label>显示方式：</label>
+                        <select id="edit-show">
+                            <option>立即显示</option>
+                            <option>清屏</option>
+                            <option value="fadeInUp">上移</option>
+                            <option value="fadeInDown">下移</option>
+                            <option value="fadeInRight">左移</option>
+                            <option value="fadeInLeft">右移</option>
+                            <!--                                    <option value="fadeInUp">上覆盖</option>
+                                                                <option value="fadeInUp">下覆盖</option>
+                                                                <option value="fadeInUp">左覆盖</option>
+                                                                <option value="fadeInUp">右覆盖</option>
+                                                                <option value="fadeInUp">中间向上下覆盖</option>
+                                                                <option value="fadeInUp">上下向中间覆盖</option>
+                                                                <option value="fadeInUp">中间向左右覆盖</option>
+                                                                <option value="fadeInUp">左右向中间覆盖</option>
+                                                                <option value="fadeInUp">上百叶</option>
+                                                                <option value="fadeInUp">下百叶</option>
+                                                                <option value="fadeInUp">左百叶</option>
+                                                                <option value="fadeInUp">右百叶</option>
+                                                                <option value="fadeInUp">全屏闪烁</option>
+                                                                <option value="fadeInUp">随机</option>-->
+                        </select>
+                    </li>
+                    <li>
+                        <label>字体类型：</label>
+                        <select id="edit-type">
+                            <option>宋体</option>
+                            <option>黑体</option>
+                            <option>楷体</option>
+                            <option>仿宋</option>
+                        </select>
+                    </li>
+                </ul>
+                <div style="height:120px;overflow-y:auto;">
+                    <table class="table legend_table infoBroad">
+                        <tbody id="infoBox">
+                        <!--       {{#each this}}
+                          <tr>
+                               <td class="legend_check"><input type="checkbox" /></td>
+                               <td><input class="txt" type="text" disabled value="{{info_content}}"/></td>
+                               <td class="legend_updet"></td>
+                               <td class="legend_del"></td>
+                               <td class="save-item">保存</td>
+                           </tr>
+                               {{/each}}-->
+
+                        </tbody>
+                    </table>
+
+                </div>
+                <div>
+                    <table class="table table-hover legend_table">
+                        <tbody>
+
+                        <tr>
+                            <td class="legend_zdy" colspan="5">
+                                <em>添加显示内容</em>
+                                <div class="dn" id="zdy_conter">
+                                    <textarea class="kegebd_div_z" id="newItem" data-html=""></textarea>
+                                    <!--     <label class="zdy_checkbox"><input type="checkbox"/>设为常用</label>-->
+                                    <button class="zdy_checkbox" id="addNewItem">保存</button>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br/>
+                <span class="info_send">信息发送</span>
+            </div>
+        </div>
+    </div>
+</script>
+<!--风机控制-->
+<script id="device_4" type="text/x-handlebars-template">
+    <div class="scrn_back" id="alert_device_4">
+        <div class="lane_pointer">
+            <p class="lock_colse lock_colse_lane"></p>
+            <h1 class="inte_h1">设备控制</h1>
+            <div class="legend_title">
+                <p>设备在线状态：<em class="c_6d">{{CONNECT_STATE}}</em></p>
+            </div>
+            <div class="inte_legend inte_legend_lane inte_ext">
+                <div>
+                    <p>风机当前状态：</p><span id="ext_n"></span><em id="wind_img" class="wind-em"></em>
+                </div>
+            </div>
+            <div class="legend_title">
+                <p>设备控制：<em class="{{colorClass}}">{{CONNECT_STATE_KZ}}</em></p>
+            </div>
+            <div class="inte_legend inte_legend_lane2 inte_ext2">
+                <ul id="windDeviceCtrl">
+                    <li class="green">
+                        <em></em>
+                        <div class="lane_input">
+                            <span></span>
+                            <i>正转</i>
+                        </div>
+                    </li>
+                    <li class="pink">
+                        <em></em>
+                        <div class="lane_input">
+                            <span></span>
+                            <i>反转</i>
+                        </div>
+                    </li>
+                    <li class="yellow">
+                        <em></em>
+                        <div class="lane_input">
+                            <span></span>
+                            <i>停止</i>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="lane_but">
+                <span class="lane_ok">确认</span>
+                <span class="lane_no">取消</span>
+            </div>
+        </div>
+    </div>
+</script>
+<!--两态车道控制标志-->
+<script id="device_5" type="text/x-handlebars-template">
+    <div class="scrn_back" id="alert_device_5">
+        <div class="lane_pointer">
+            <p class="lock_colse lock_colse_lane"></p>
+            <h1 class="inte_h1">设备控制</h1>
+            <div class="legend_title">
+                <p>设备在线状态：<em class="c_6d">{{CONNECT_STATE}}</em></p>
+            </div>
+            <div class="inte_legend inte_legend_lane">
+                <div>
+                    <p>车道指示器当前状态：</p><span id="twoCar"></span><em id="lane_back"></em>
+                </div>
+            </div>
+            <div class="legend_title">
+                <p>设备控制：<em class="{{colorClass}}">{{CONNECT_STATE_KZ}}</em></p>
+            </div>
+            <div class="inte_legend inte_legend_lane2">
+                <ul id="lane_cenk">
+                    {{#if DireCtion_Car}}
+                    <li class="forward">
+                        <em></em>
+                        <div class="lane_input">
+                            <span></span>
+                            <i>正向通行</i>
+                        </div>
+                    </li>
+                    <li class="reverse">
+                        <em></em>
+                        <div class="lane_input">
+                            <span></span>
+                            <i>反向通行</i>
+                        </div>
+                    </li>
+                    {{else}}
+                    <li class="reverse">
+                        <em></em>
+                        <div class="lane_input">
+                            <span></span>
+                            <i>正向通行</i>
+                        </div>
+                    </li>
+                    <li class="forward">
+                        <em></em>
+                        <div class="lane_input">
+                            <span></span>
+                            <i>反向通行</i>
+                        </div>
+                    </li>
+                    {{/if}}
+
+                    <li class="double-no">
+                        <em></em>
+                        <div class="lane_input">
+                            <span></span>
+                            <i>双向禁行</i>
+                        </div>
+                    </li>
+                    <li class="double-close">
+                        <em></em>
+                        <div class="lane_input">
+                            <span></span>
+                            <i>关闭</i>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="lane_but">
+                <span class="lane_ok">确认</span>
+                <span class="lane_no">取消</span>
+            </div>
+        </div>
+    </div>
+</script>
+<!--三态车道控制标志-->
+<script id="device_6" type="text/x-handlebars-template">
+    <div class="scrn_back" id="alert_device_6">
+        <div class="lane_pointer">
+            <p class="lock_colse lock_colse_lane"></p>
+            <h1 class="inte_h1">设备控制</h1>
+            <div class="legend_title">
+                <p>设备在线状态：<em class="c_6d">{{CONNECT_STATE}}</em></p>
+            </div>
+            <div class="inte_legend inte_legend_lane">
+                <div>
+                    <p>车道指示器当前状态：</p><span id="threeCar"></span><em id="lane_back" class="forward"></em>
+                </div>
+            </div>
+            <div class="legend_title">
+                <p>设备控制：<em class="{{colorClass}}">{{CONNECT_STATE_KZ}}</em></p>
+            </div>
+            <div class="inte_legend inte_legend_lane2 inte_legend_lane3">
+                <ul id="lane_cenk">
+                    {{#if DireCtion_Car}}
+                    <li class="forward">
+                        <em></em>
+                        <div class="lane_input">
+                            <span></span>
+                            <i>正向通行</i>
+                        </div>
+                    </li>
+                    <li class="reverse">
+                        <em></em>
+                        <div class="lane_input">
+                            <span></span>
+                            <i>反向通行</i>
+                        </div>
+                    </li>
+                    <li class="forward-left">
+                        <em></em>
+                        <div class="lane_input">
+                            <span></span>
+                            <i>正向左转</i>
+                        </div>
+                    </li>
+                    <li class="reverse-left">
+                        <em></em>
+                        <div class="lane_input">
+                            <span></span>
+                            <i>反向左转</i>
+                        </div>
+                    </li>
+                    {{else}}
+                    <li class="reverse">
+                        <em></em>
+                        <div class="lane_input">
+                            <span></span>
+                            <i>正向通行</i>
+                        </div>
+                    </li>
+                    <li class="forward">
+                        <em></em>
+                        <div class="lane_input">
+                            <span></span>
+                            <i>反向通行</i>
+                        </div>
+                    </li>   
+                    <li class="reverse-left-down">
+                        <em></em>
+                        <div class="lane_input">
+                            <span></span>
+                            <i>正向左转</i>
+                        </div>
+                    </li>
+                    <li class="forward-left-down">
+                        <em></em>
+                        <div class="lane_input">
+                            <span></span>
+                            <i>反向左转</i>
+                        </div>
+                    </li>
+                    {{/if}}
+                    <li class="double-no">
+                        <em></em>
+                        <div class="lane_input">
+                            <span></span>
+                            <i>双向禁行</i>
+                        </div>
+                    </li>
+                    <li class="double-close">
+                        <em></em>
+                        <div class="lane_input">
+                            <span></span>
+                            <i>关闭</i>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="lane_but">
+                <span class="lane_ok">确认</span>
+                <span class="lane_no">取消</span>
+            </div>
+        </div>
+    </div>
+</script>
+<!--摄像机-->
+<script id="device_7" type="text/x-handlebars-template">
+    <div class="scrn_back" id="alert_device_7">
+        <div class="vidicon_main">
+            <div class="vidicon_l">
+                <div class="vidicon_tit">
+                    <em class="h_title">视频播放</em>
+                    <em><span class="c_6d">设备IP：</span>{{IP_ADDRESS}} </em>
+                    <em><span class="c_6d">设备名称：</span>{{DEVICE_NAME}} </em>
+                    <em><span class="c_6d">设备端口：</span>{{IP_PORT}}</em>
+                </div>
+                <div class="video_play"></div>
+            </div>
+            <div class="vidicon_r">
+                <div>
+                    <p class="vidicon_holder">设备控制</p>
+                    <span class="lock_colse"></span>
+                </div>
+                <div class="tblr_but">
+                    <ul>
+                        <li class="video_top">上</li>
+                        <li class="video_left">左</li>
+                        <li class="video_bottom">下</li>
+                        <li class="video_right">右</li>
+                    </ul>
+                </div>
+                <div class="vidicon_debug">
+                    <ul>
+                        <li>
+                            <span>调焦：</span>
+                            <span class="bor">缩</span>
+                            <span class="bor">伸</span>
+                        </li>
+                        <li>
+                            <span>聚焦：</span>
+                            <span class="bor">近</span>
+                            <span class="bor">远</span>
+                        </li>
+                        <li>
+                            <span>光圈：</span>
+                            <span class="bor">大</span>
+                            <span class="bor">小</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="vidicon_zt">
+                    <ul>
+                        <li>开始播放</li>
+                        <li>开始录像</li>
+                        <li>BMP抓图</li>
+                        <li>JPEG抓图</li>
+                    </ul>
+                </div>
+
+                <p class="vidicon_ts">
+                    <em>请确保前端摄像机登陆端口为8000</em>
+                    <em>登陆用户名：admin 密码：12345</em>
+                </p>
+            </div>
+        </div>
+    </div>
+</script>
+<!--光强查询-->
+<!--<script id="device_8" type="text/x-handlebars-template">
+    <div class="scrn_back" id="alert_device_8">
+        <div class="highlight_back">
+            <p class="lock_colse"></p>
+            <label class="display">光强查询</label>
+            <ul class="highlight">
+                <li>
+                    <label>设备名称：</label>
+                    <input type="text" value="光强检测器" disabled="disabled"/>
+                </li>
+                <li>
+                    <label>设备位置：</label>
+                    <input type="text" value="光强检测器" disabled="disabled"/>
+                </li>
+                <li>
+                    <label>洞外照度：</label>
+                    <input type="text" value="光强检测器" disabled="disabled"/>
+                </li>
+            </ul>
+        </div>
+    </div>
+</script>-->
+<script id="device_9" type="text/x-handlebars-template">
+    <div class="scrn_back" id="alert_device_8">
+        <div class="highlight_back">
+            <p class="lock_colse"></p>
+            <label class="display">光强查询</label>
+            <ul class="highlight">
+                <li>
+                    <label>设备名称：</label>
+                    <input type="text" value="{{DEVICE_NAME}}" disabled="disabled"/>
+                </li>
+                <li>
+                    <label>设备位置：</label>
+                    <input type="text" value="{{DEVICE_LOCATION}}" disabled="disabled"/>
+                </li>
+                <li>
+                    <label>{{Device_TypeG}}：</label>
+                    <input type="text" value="{{DEVICE_DATA_1}}" disabled="disabled"/>
+                </li>
+            </ul>
+        </div>
+    </div>
+</script>
+<!--风速风向查询-->
+<script id="device_10" type="text/x-handlebars-template">
+    <div class="scrn_back" id="alert_device_10">
+        <div class="highlight_back">
+            <p class="lock_colse"></p>
+            <label class="display margin_b">风速风向查询</label>
+            <ul class="highlight">
+                <li>
+                    <label>设备名称：</label>
+                    <input type="text" value="{{DEVICE_NAME}}" disabled="disabled"/>
+                </li>
+                <li>
+                    <label>设备位置：</label>
+                    <input type="text" value="{{DEVICE_LOCATION}}" disabled="disabled"/>
+                </li>
+                <li>
+                    <label>当前风速：</label>
+                    <input type="text" value="{{DEVICE_DATA_1}}" disabled="disabled"/>
+                </li>
+                <li>
+                    <label>当前风向：</label>
+                    <input type="text" value="{{DEVICE_DATA_2}}" disabled="disabled"/>
+                </li>
+            </ul>
+        </div>
+    </div>
+</script>
+<!--交通信号灯控制-->
+<script id="device_11" type="text/x-handlebars-template">
+    <div class="scrn_back" id="alert_device_11">
+        <div class="lane_pointer">
+            <p class="lock_colse lock_colse_lane"></p>
+            <h1 class="inte_h1">设备控制</h1>
+            <div class="legend_title">
+                <p>设备在线状态：<em class="c_6d">{{CONNECT_STATE}}</em></p>
+            </div>
+            <div class="inte_legend inte_legend_lane inte_control">
+                <div>
+                    <p>交通指示灯当前状态：</p><span id="stat"></span><em id="con_img"></em>
+                </div>
+            </div>
+            <div class="legend_title">
+                <p>设备控制：<em class="{{colorClass}}">{{CONNECT_STATE_KZ}}</em></p>
+            </div>
+            <div class="inte_legend inte_legend_lane2 inte_control2">
+                <ul id="control_back">
+                    <li>
+                        <em></em>
+                        <div class="control_input lane_input">
+                            <span></span>
+                            <i>左转</i>
+                        </div>
+                    </li>
+                    <li>
+                        <em></em>
+                        <div class="control_input lane_input">
+                            <span></span>
+                            <i>警告</i>
+                        </div>
+                    </li>
+                    <li>
+                        <em></em>
+                        <div class="control_input lane_input">
+                            <span></span>
+                            <i>直行</i>
+                        </div>
+                    </li>
+                    <li>
+                        <em></em>
+                        <div class="control_input lane_input">
+                            <span></span>
+                            <i>禁行</i>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="lane_but">
+                <span class="lane_ok">确认</span>
+                <span class="lane_no">取消</span>
+            </div>
+        </div>
+    </div>
+</script>
+<!--一氧化碳查询-->
+<script id="device_12" type="text/x-handlebars-template">
+    <div class="scrn_back" id="alert_device_12">
+        <div class="highlight_back">
+            <p class="lock_colse"></p>
+            <label class="display margin_b">一氧化碳查询</label>
+            <ul class="highlight">
+                <li>
+                    <label>设备名称：</label>
+                    <input type="text" value="{{DEVICE_NAME}}" disabled="disabled"/>
+                </li>
+                <li>
+                    <label>设备位置：</label>
+                    <input type="text" value="{{DEVICE_LOCATION}}" disabled="disabled"/>
+                </li>
+                <li>
+                    <label>CO浓度：</label>
+                    <input type="text" value="{{DEVICE_DATA_1}}" disabled="disabled"/>
+                </li>
+                <li>
+                    <label>能见度：</label>
+                    <input type="text" value="{{DEVICE_DATA_2}}" disabled="disabled"/>
+                </li>
+            </ul>
+        </div>
+    </div>
+</script>
+
+<!--能见度查询-->
+<script id="device_14" type="text/x-handlebars-template">
+    <div class="scrn_back" id="alert_device_14">
+        <div class="highlight_back">
+            <p class="lock_colse"></p>
+            <label class="display margin_b">能见度查询</label>
+            <ul class="highlight">
+                <li>
+                    <label>设备名称：</label>
+                    <input type="text" value="{{DEVICE_NAME}}" disabled="disabled"/>
+                </li>
+                <li>
+                    <label>设备位置：</label>
+                    <input type="text" value="{{DEVICE_LOCATION}}" disabled="disabled"/>
+                </li>
+                <li>
+                    <label>能见度：</label>
+                    <input type="text" value="{{DEVICE_DATA_1}}" disabled="disabled"/>
+                </li>
+            </ul>
+        </div>
+    </div>
+</script>
+<!--车检器查询-->
+<script id="device_15" type="text/x-handlebars-template">
+    <div class="scrn_back" id="alert_device_15">
+        <div class="highlight_back car_back">
+            <p class="lock_colse"></p>
+            <label class="display margin_b">车检器查询</label>
+            <ul class="highlight">
+                <li>
+                    <label>设备名称：</label>
+                    <input type="text" value="{{DEVICE_NAME}}" disabled="disabled"/>
+                </li>
+                <li>
+                    <label>设备位置：</label>
+                    <input type="text" value="{{DEVICE_LOCATION}}" disabled="disabled"/>
+                </li>
+                <li>
+                    <label>上行</label>
+                </li>
+                <li>
+                </li>
+                <li>
+                    <label>平均车速：</label>
+                    <input type="text" value="{{CarSpeed}}" disabled="disabled"/>
+                </li>
+                <li>
+                    <label>平均流量：</label>
+                    <input type="text" value="{{CarNumber}}" disabled="disabled"/>
+                </li>
+                <li>
+                    <label>平均车长：</label>
+                    <input type="text" value="{{CarLength}}" disabled="disabled"/>
+                </li>
+                <li>
+                    <label>平均密度：</label>
+                    <input type="text" value="{{Cardensity}}" disabled="disabled"/>
+                </li>
+                <li>
+                    <label> 占有率：</label>
+                    <input type="text" value="{{Carshare}}" disabled="disabled"/>
+                </li>
+                <li>
+                    <label> 车间距：</label>
+                    <input type="text" value="{{Carspcing}}" disabled="disabled"/>
+                </li>
+                <li>
+                    <label>下行</label>
+                </li>
+                <li>
+                </li>
+                <li>
+                    <label>平均车速：</label>
+                    <input type="text" value="{{CarSpeed}}" disabled="disabled"/>
+                </li>
+                <li>
+                    <label>平均流量：</label>
+                    <input type="text" value="{{CarNumber}}" disabled="disabled"/>
+                </li>
+                <li>
+                    <label>平均车长：</label>
+                    <input type="text" value="{{CarLength}}" disabled="disabled"/>
+                </li>
+                <li>
+                    <label>平均密度：</label>
+                    <input type="text" value="{{Cardensity}}" disabled="disabled"/>
+                </li>
+                <li>
+                    <label> 占有率：</label>
+                    <input type="text" value="{{Carshare}}" disabled="disabled"/>
+                </li>
+                <li>
+                    <label> 车间距：</label>
+                    <input type="text" value="{{Carspcing}}" disabled="disabled"/>
+                </li>
+            </ul>
+        </div>
+    </div>
+</script>
+<!--枪机摄像机----警报弹窗-->
+<div class="scrn_back dn">
+    <div class="vidicon_main">
+        <div class="vidicon_l">
+            <div class="vidicon_tit">
+                <em class="h_title">视频播放</em>
+                <em><span class="c_6d">设备IP：</span>53.84.30 </em>
+                <em><span class="c_6d">设备名称：</span>降低下行摄像机K264+200 </em>
+                <em><span class="c_6d">设备端口：</span>8000</em>
+            </div>
+            <div class="video_play video_play_alarm"></div>
+        </div>
+        <div class="vidicon_r">
+            <div>
+                <p class="vidicon_alarm">
+                    <span>执行预案</span>
+                    <span>取消预案</span>
+                </p>
+                <span class="lock_colse"></span>
+            </div>
+            <div class="tblr_but">
+                <ul>
+                    <li class="video_top">上</li>
+                    <li class="video_left">左</li>
+                    <li class="video_bottom">下</li>
+                    <li class="video_right">右</li>
+                </ul>
+            </div>
+            <div class="vidicon_debug">
+                <ul>
+                    <li>
+                        <span>调焦：</span>
+                        <span class="bor">缩</span>
+                        <span class="bor">伸</span>
+                    </li>
+                    <li>
+                        <span>聚焦：</span>
+                        <span class="bor">近</span>
+                        <span class="bor">远</span>
+                    </li>
+                    <li>
+                        <span>光圈：</span>
+                        <span class="bor">大</span>
+                        <span class="bor">小</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="vidicon_zt">
+                <ul>
+                    <li>开始播放</li>
+                    <li>开始录像</li>
+                    <li>BMP抓图</li>
+                    <li>JPEG抓图</li>
+                </ul>
+            </div>
+
+            <p class="vidicon_ts">
+                <em>请确保前端摄像机登陆端口为8000</em>
+                <em>登陆用户名：admin 密码：12345</em>
+            </p>
+            <div class="vidicon_td">
+                <em>播放/抓图通道</em>
+                <em>1</em>
+            </div>
+        </div>
+    </div>
+</div>
+<!--设备群控  -->
+<!--风机控制-->
+<script id="all-ctrl-wind" type="text/x-handlebars-template">
+    <div class="scrn_back">
+        <div class="lane_pointer">
+            <p class="lock_colse lock_colse_lane"></p>
+            <h1 class="inte_h1">风机控制</h1>
+
+            <div class="legend_title">
+                <p>设备控制：<em class="c_6d">正常</em></p>
+            </div>
+            <div class="inte_legend inte_legend_lane2 inte_ext2">
+                <ul id="windDeviceCtrlAll">
+                    <li>
+                        <em></em>
+                        <div class="lane_input">
+                            <span></span>
+                            <i>正转</i>
+                        </div>
+                    </li>
+                    <li>
+                        <em></em>
+                        <div class="lane_input">
+                            <span></span>
+                            <i>反转</i>
+                        </div>
+                    </li>
+                    <li>
+                        <em></em>
+                        <div class="lane_input">
+                            <span></span>
+                            <i>停止</i>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="legend_title">
+                <p>控制方向：<em class="c_6d">正常</em></p>
+            </div>
+            <div class="inte_legend inte_legend_lane inte_legend_lane4">
+                <div>
+                    <p>控制方向：</p>
+                    <select class="entry_input tain_wirth" id="SelectDirection">
+                        {{#each this}}
+                        <option value="{{RoadDirectionID}}">{{RoadDirectionName}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+            </div>
+            <div class="hint_size hint_tunne">
+                <p>提示：如改变风机转向，须先停止风机，30秒后再启动！</p>
+                <p>提示：当风机状态为本地状态时，在中心不可控！</p>
+            </div>
+            <div class="lane_but">
+                <span class="lane_groupok">确认</span>
+                <span class="lane_no">取消</span>
+            </div>
+        </div>
+    </div>
+</script>
+<!--隧道照明控制-->
+<script id="all-ctrl-light" type="text/x-handlebars-template">
+    <div class="scrn_back">
+        <div class="lane_pointer">
+            <p class="lock_colse lock_colse_lane"></p>
+            <h1 class="inte_h1">隧道照明灯控制</h1>
+            <div class="legend_title">
+                <p>设备控制：</p>
+            </div>
+            <div class="inte_legend inte_legend_lane2 inte_control2 inte_tunnel2">
+                <ul id="tunnel_back">
+                    <li>
+                        <em></em>
+                        <div class="control_input lane_input">
+                            <span></span>
+                            <i>开启</i>
+                        </div>
+                    </li>
+                    <li>
+                        <em></em>
+                        <div class="control_input lane_input">
+                            <span></span>
+                            <i>关闭</i>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="legend_title">
+                <p>控制方向：<em class="c_6d">正常</em></p>
+            </div>
+            <div class="inte_legend inte_legend_lane inte_legend_lane4">
+                <div>
+                    <p>控制方向：</p>
+                    <select class="entry_input tain_wirth" id="SelectDirection">
+                        {{#each this}}
+                        <option value="{{RoadDirectionID}}">{{RoadDirectionName}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+            </div>
+            <div class="hint_size hint_tunne">提示：当照明回路控制柜状态为本地控制模式时，在中心不可控！</div>
+            <div class="lane_but">
+                <span class="lane_groupok">确认</span>
+                <span class="lane_no">取消</span>
+            </div>
+        </div>
+    </div>
+</script>
+<!--交通信号灯控制-->
+<script id="all-ctrl-traffic" type="text/x-handlebars-template">
+    <div class="scrn_back">
+        <div class="lane_pointer">
+            <p class="lock_colse lock_colse_lane"></p>
+            <h1 class="inte_h1">交通信号灯控制</h1>
+            <div class="legend_title">
+                <p>设备控制：</p>
+            </div>
+            <div class="inte_legend inte_legend_lane2 inte_control2">
+                <ul id="control_back_all">
+                    <li>
+                        <em></em>
+                        <div class="control_input lane_input">
+                            <span></span>
+                            <i>正面绿灯</i>
+                        </div>
+                    </li>
+
+                    <li>
+                        <em></em>
+                        <div class="control_input lane_input">
+                            <span></span>
+                            <i>正面黄灯</i>
+                        </div>
+                    </li>
+                    <li>
+                        <em></em>
+                        <div class="control_input lane_input">
+                            <span></span>
+                            <i>正面左转</i>
+                        </div>
+                    </li>
+                    <li>
+                        <em></em>
+                        <div class="control_input lane_input">
+                            <span></span>
+                            <i>正面红灯</i>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="legend_title">
+                <p>控制方向：<em class="c_6d">正常</em></p>
+            </div>
+            <div class="inte_legend inte_legend_lane inte_legend_lane4">
+                <div>
+                    <p>控制方向：</p>
+                    <select class="entry_input tain_wirth" id="SelectDirection">
+                        {{#each this}}
+                        <option value="{{RoadDirectionID}}">{{RoadDirectionName}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+            </div>
+
+            <div class="lane_but">
+                <span class="lane_groupok">确认</span>
+                <span class="lane_no">取消</span>
+            </div>
+        </div>
+    </div>
+</script>
+<!--两态车道指示器-->
+<script id="all-ctrl-double" type="text/x-handlebars-template">
+    <div class="scrn_back">
+        <div class="lane_pointer">
+            <p class="lock_colse lock_colse_lane"></p>
+            <h1 class="inte_h1">两态车道指示器</h1>
+
+            <div class="legend_title">
+                <p>设备控制：<em class="c_6d">正常</em></p>
+            </div>
+            <div class="inte_legend inte_legend_lane2 inte_legend_lane6">
+                <ul id="lane_cenk">
+                    <li class="forward">
+                        <em></em>
+                        <div class="lane_input">
+                            <span></span>
+                            <i>正向通行</i>
+                        </div>
+                    </li>
+                    <li class="reverse">
+                        <em></em>
+                        <div class="lane_input">
+                            <span></span>
+                            <i>反向通行</i>
+                        </div>
+                    </li>
+                    <li class="double-no">
+                        <em></em>
+                        <div class="lane_input">
+                            <span></span>
+                            <i>双向禁行</i>
+                        </div>
+                    </li>
+                    <li class="double-close">
+                        <em></em>
+                        <div class="lane_input">
+                            <span></span>
+                            <i>关闭</i>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="legend_title">
+                <p>控制方向：<em class="c_6d">正常</em></p>
+            </div>
+            <div class="inte_legend inte_legend_lane inte_legend_lane4">
+                <div>
+                    <p>控制方向：</p>
+                    <select class="entry_input tain_wirth" id="SelectDirection">
+                        {{#each this}}
+                        <option value="{{RoadDirectionID}}">{{RoadDirectionName}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+            </div>
+            <div class="lane_but">
+                <span class="lane_groupok">确认</span>
+                <span class="lane_no">取消</span>
+            </div>
+        </div>
+    </div>
+</script>
+<!--三态车道指示器-->
+<script id="all-ctrl-three" type="text/x-handlebars-template">
+    <div class="scrn_back">
+        <div class="lane_pointer">
+            <p class="lock_colse lock_colse_lane"></p>
+            <h1 class="inte_h1">三态车道指示器</h1>
+
+            <div class="legend_title">
+                <p>设备控制：<em class="c_6d">正常</em></p>
+            </div>
+            <div class="inte_legend inte_legend_lane2 inte_legend_lane3">
+                <ul id="lane_cenk">
+                    <li class="forward">
+                        <em></em>
+                        <div class="lane_input">
+                            <span></span>
+                            <i>正向通行</i>
+                        </div>
+                    </li>
+                    <li class="reverse">
+                        <em></em>
+                        <div class="lane_input">
+                            <span></span>
+                            <i>反向通行</i>
+                        </div>
+                    </li>
+                    <li class="forward-left">
+                        <em></em>
+                        <div class="lane_input">
+                            <span></span>
+                            <i>正向左转</i>
+                        </div>
+                    </li>
+                    <li class="reverse-left">
+                        <em></em>
+                        <div class="lane_input">
+                            <span></span>
+                            <i>反向左转</i>
+                        </div>
+                    </li>
+                    <li class="double-no">
+                        <em></em>
+                        <div class="lane_input">
+                            <span></span>
+                            <i>双向禁行</i>
+                        </div>
+                    </li>
+                    <li class="double-close">
+                        <em></em>
+                        <div class="lane_input">
+                            <span></span>
+                            <i>关闭</i>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="legend_title">
+                <p>控制方向：<em class="c_6d">正常</em></p>
+            </div>
+            <div class="inte_legend inte_legend_lane inte_legend_lane4">
+                <div>
+                    <p>控制方向：</p>
+                    <select class="entry_input tain_wirth" id="SelectDirection">
+                        {{#each this}}
+                        <option value="{{RoadDirectionID}}">{{RoadDirectionName}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+            </div>
+            <div class="lane_but">
+                <span class="lane_groupok">确认</span>
+                <span class="lane_no">取消</span>
+            </div>
+        </div>
+    </div>
+</script>
+<!--设备群控   end -->
+<!--添加设备弹窗-->
+<script id="addDeviceAlert" type="text/x-handlebars-template">
+    <div class="scrn_back">
+        <div class="inte_door">
+            <p class="lock_colse lock_colse_1"></p>
+            <h1 class="inte_h1">设备信息</h1>
+            <div class="inte_legend legend_menu_add">
+                <ul class="legend_menu">
+                    <li>
+                        <label>设备编号：</label>
+                        <input type="text" value="{{DEVICE_ID}}" disabled="disabled" id="DEVICE_ID_QBB"/>
+                    </li>
+                    <li>
+                        <label>设备名称：</label>
+                        <input type="text" value="{{DEVICE_NAME}}" id="DEVICE_NAME_QBB"/>
+                    </li>
+                </ul>
+                <ul class="legend_menu">
+                    <li>
+                        <label>设备类型：</label>
+                        <select id="DEVICE_TYPEID_QBB_Select">
+                        </select>
+                         <input type="text"  id="DEVICE_TYPEID_QBB"/>
+                    </li>
+                    <li>
+                        <label>设备厂商：</label>
+                        <select id="COMPANY_NAME_QBB">
+                        </select>
+                    </li>
+                    <li>
+                        <label>设备型号：</label>
+                         <select id="DEVICE_MODELID_QBB">
+                        </select>
+                       <!-- <input type="text" value="{{DEVICE_MODELID}}" id="DEVICE_MODELID_QBB"/>-->
+                    </li>
+                </ul>
+                <ul class="legend_menu">
+                    <li>
+                        <label>归属路段：</label>
+                        <select id="ROADID_QBB">
+                        </select>
+                       <!-- <input type="text" value="{{AGENCIES_NAME}}" id="AGENCIES_NAME_QBB"/>-->
+                    </li>
+                    <li>
+                        <label>安装方向：</label>
+                               <select id="DEVICE_Direction_QBB">
+                               </select>
+                        <!--<input type="text" value="{{DEVICE_DIRECTION}}" id="DEVICE_DIRECTION_QBB"/>-->
+                    </li>
+                    <li>
+                        <label>设备位置：</label>
+                        <input type="text" value="{{DEVICE_LOCATION}}" id="DEVICE_LOCATION_QBB"/>
+                    </li>
+                    <li>
+                        <label>设备桩号：</label>
+                        <input type="text" value="{{DEVICE_STAKE}}" id="DEVICE_STAKE_QBB"/>
+                    </li>
+                </ul>
+                <ul class="legend_menu">
+                    <li>
+                        <label>通信方式：</label>
+                        <!--        <select>
+                                    <option>TCP</option>
+                                    <option>TCP</option>
+                                </select>-->
+                        <input type="text" value="{{CONMMUNCATION_TYPE}}" id="CONMMUNCATION_TYPE_QBB"/>
+                    </li>
+                    <li>
+                        <label>设备IP：</label>
+                        <input type="text" value="{{IP_ADDRESS}}" id="IP_ADDRESS_QBB"/>
+                    </li>
+                </ul>
+                 {{#if CMS_QBB}}
+                <ul class="legend_menu" >
+                    <li>
+                        <label>情报板行：</label>
+                        <select id="CMS_COLUMN_QBB">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </select>
+                    </li>
+                    <li>
+                        <label>情报板列：</label>
+                        <select id="CMS_ROW_QBB">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </select>
+                    </li>
+                    <li>
+                        <label>分辨率：</label>
+                        <select id="CMS_RESOLUTION_QBB">
+                            <option>16</option>
+                            <option>24</option>
+                            <option>32</option>
+                            <option>48</option>
+                            <option>64</option>
+                            <option>98</option>
+                        </select>
+                    </li>
+                </ul>
+                      {{/if}}
+                <ul class="legend_menu legend_menu_add_ul">
+                    <li>
+                        <label>启用时间：</label>
+                        <input type="text" value="{{DEVICE_RUNTIME}}" id="DEVICE_RUNTIME_QBB"/>
+                    </li>
+                    <li>
+                        <label class="fl">设备备注：</label>
+                        <textarea id="NOTE_QBB">{{NOTE}}</textarea>
+                    </li>
+                </ul>
+            </div>
+            <span class="info_send" id="btn-add-device" >保存</span>
+        </div>
+    </div>
+</script>

@@ -1,0 +1,102 @@
+<div class="main_header">
+
+    <!-- header section start-->
+    <div class="header-section">
+
+        <!--toggle button start-->
+
+        <a class="toggle-btn"><i class="fa fa-bars"></i></a>
+
+        <!--toggle button end-->
+
+        <!--search start-->
+
+        <form class="searchform" action="" method="post">
+
+            <div>
+                <i class="fa fa-search search_i"></i>
+                <input type="text" class="form-control" name="keyword" placeholder="点击搜索..." />
+            </div>
+
+        </form>
+
+        <!--search end-->
+
+        <!--notification menu start -->
+
+        <div class="menu-right" ng-controller="header">
+
+            <ul class="notification-menu">
+
+                <li>
+
+                    <a class="btn btn-default dropdown-toggle info-number" data-toggle="dropdown">
+
+                        <i class="fa fa-envelope"></i>
+
+                        <span class="badge">{{AbnormalEventNotPrompt.length}}</span>
+
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-head pull-right">
+
+                        <h5 class="title">异常事件提示</h5>
+
+                        <ul class="dropdown-list normal-list">
+
+                            <li class="new" ng-repeat="x in AbnormalEventNotPrompt">
+                                <a href="#WarningPage/{{x.ID}}"><span class="desc">在{{x.RoadName}}{{x.Event_Direction}}方向{{x.Event_Stake}}位置,发生{{x.Event_Type_Name}}告警,告警内容为{{x.Event_details}}</span></a>
+                            </li>
+                          
+                        </ul>
+
+                    </div>
+
+                </li>
+
+                <li>
+
+                    <em class="btn btn-default dropdown-toggle info-number" data-toggle="dropdown" id="lock">
+
+                        <i class="fa fa-unlock-alt unlock_alt"></i>
+                    </em>
+                </li>
+
+                <li>
+
+                    <a class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+
+                       <!-- <img src="images/user-avatar.png" alt="" />-->
+                        {{name}}
+
+                        <span class="caret"></span>
+
+                    </a>
+
+                    <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
+
+                        <li id="update_pwd">
+                            <a href="/JTJK/traffic/html_home/UpdateUser.html"><i class="fa fa-cog"></i>修改密码</a>
+                        </li>
+
+                        <li>
+                            <a ng-click="OutLogin()"><i class="fa fa-sign-in"></i>退出登录</a>
+                        </li>
+
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+        <!--notification menu end -->
+    </div>
+    <!-- header section end-->
+    <!-- page heading start-->
+    <div class="page-heading heading_backgroung">
+        <ul class="breadcrumb">
+            <li>当前您的界面:</li>
+            <li class="active">首页</li>
+        </ul>
+    </div>
+</div>
+

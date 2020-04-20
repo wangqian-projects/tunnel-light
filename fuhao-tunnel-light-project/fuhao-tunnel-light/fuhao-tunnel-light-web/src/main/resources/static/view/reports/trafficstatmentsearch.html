@@ -1,0 +1,97 @@
+<div class="t_system">
+    <div class="row ">
+        <div class="col-md-12">
+            <div class="infoentry_info panel-body panel">
+                <ul>
+                    <li class="col-md-3">
+                        <label class="col-md-4 mar_pad">统计设备：</label>
+                        <select class="entry_input wedet_w" ng-model="DEVICEID" id="DEVICENAME">
+                            
+                            <option ng-repeat="d in DeviceList" value="{{d.DEVICE_ID}}">{{d.DEVICE_NAME}}</option>
+                        </select>
+                    </li>
+                    <li class="col-md-3">
+                        <label class="col-md-4 mar_pad">统计时间：</label>
+                        <input size="16" type="text" value="" readonly id="datetimepicker" 
+                        	 class="form_datetime entry_input input_padding col-md-8" style="cursor: no-drop">
+                    </li>
+                    <li class="col-md-3">
+                        <label class="col-md-2 text-center" style="padding: 0!important;">至</label>
+                        <input size="16" type="text" value="" readonly id="datetimepicker2" 
+                        	class="form_datetime entry_input input_padding col-md-8" style="cursor: no-drop">
+                    </li>
+                    <li class="col-md-2 f_r">
+                        <span class="excep_query f_r" style="cursor: pointer;" ng-click="GetList(DEVICEID,StartTime,EndTime)">查询</span>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <section class="panel">
+
+                <div class="panel-body">
+                    <div class="adv-table">
+                        <table class="display table table-bordered table-striped" id="dynamic-table">
+                            <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>统计时间</th>
+                                    <th class="hidden-phone">车道号</th>
+                                    <th class="hidden-phone">中小客<br/>车流量</th>
+                                    <th class="hidden-phone">中小客<br/>车车速</th>
+                                    <th class="hidden-phone">小货车<br/>车流量</th>
+                                    <th class="hidden-phone">小货车<br/>车车速</th>
+                                    <th class="hidden-phone">大客车<br/>流量</th>
+                                    <th class="hidden-phone">大客车<br/>车速</th>
+                                    <th class="hidden-phone">中型货车<br/>车流量</th>
+                                    <th class="hidden-phone">中型货车<br/>车车速</th>
+                                    <th class="hidden-phone">大型货车<br/>车流量</th>
+                                    <th class="hidden-phone">大型货车<br/>车车速</th>
+                                    <th class="hidden-phone">特大型货<br/>车车流量</th>
+                                    <th class="hidden-phone">特大型货<br/>车车车速</th>
+                                    <th class="hidden-phone">集装箱<br/>车流量</th>
+                                    <th class="hidden-phone">集装箱<br/>车车速</th>
+                                    <th class="hidden-phone">跟车比</th>
+                                    <th class="hidden-phone">占有率</th>
+                                    <th class="hidden-phone">车头时<br/>距</th>
+                                </tr>
+                            </thead>
+                            <tbody id="group_one">
+                                <tr class="gradeX" ng-repeat="d in DataList">
+                                    <td>{{$index+1}}</td>
+                                    <td>{{d.Report_Time}}</td>
+                                    <td class="center hidden-phone">{{d.Lanes_Index}}</td>
+                                    <td class="center hidden-phone">{{d.SBus_Volume}}</td>
+                                    <td class="center hidden-phone">{{d.SBus_Speed}}</td>
+                                    <td class="center hidden-phone">{{d.STruck_Volume}}</td>
+                                    <td class="center hidden-phone">{{d.STruck_Speed}}</td>
+                                    <td class="center hidden-phone">{{d.BBus_Volume}}</td>
+                                    <td class="center hidden-phone">{{d.BBus_Speed}}</td>
+                                    <td class="center hidden-phone">{{d.MTruck_Volume}}</td>
+                                    <td class="center hidden-phone">{{d.MTruck_Speed}}</td>
+                                    <td class="center hidden-phone">{{d.BTruck_Volume}}</td>
+                                    <td class="center hidden-phone">{{d.BTruck_Speed}}</td>
+                                    <td class="center hidden-phone">{{d.LTruck_Volume}}</td>
+                                    <td class="center hidden-phone">{{d.LTruck_Speed}}</td>
+                                    <td class="center hidden-phone">{{d.CTruck_Volume}}</td>
+                                    <td class="center hidden-phone">{{d.CTruck_Speed}}</td>
+                                    <td class="center hidden-phone">{{d.Car_Percentage}}</td>
+                                    <td class="center hidden-phone">{{d.Time_Share}}</td>
+                                    <td class="center hidden-phone">{{d.Head_Way}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-lg-12">
+                         <tm-pagination conf="paginationConf"></tm-pagination>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </div>
+</div>
+

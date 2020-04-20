@@ -1,0 +1,115 @@
+<div class="wrapper">
+    <div class="wrapper_menu">
+        <ul class="wrapper_inline" id="wrapper_inline">
+            <li id="lock-device"><em class="wrapper_icon" style="color: #65cea7;">解锁设备</em></li>
+            <li class="topNav" ng-class="{'li_active':flag1}"><em ng-click="flag1=!flag1" class="wrapper_icon wrapper_li_02 wrapper_size ">设备群控<i
+                    class="fa fa-angle-down wrapper_i"></i></em>
+                <p ng-class="{true:'',false:'dn'}[flag1]" class="wrapper_dropdown pull-right wrapper_pp"
+                   id="wrapper_pp">
+                    <span data-name="all-ctrl-wind">风机</span>
+                    <span data-name="all-ctrl-light">照明</span>
+                    <span data-name="all-ctrl-traffic">交通信号灯控制</span>
+                    <span data-name="all-ctrl-double">两态车道指示器</span>
+                    <span data-name="all-ctrl-three">三态车道指示器</span>
+                </p>
+            </li>
+            <li ng-class="{'li_active':flag2}" class="topNav"><em ng-click="flag2=!flag2" data-toggle="dropdown"
+                                   class="wrapper_icon wrapper_li_03 wrapper_size">图层控制<i
+                    class="fa fa-angle-down wrapper_i"></i></em>
+                <p ng-class="{true:'',false:'dn'}[flag2]" class=" wrapper_dropdown pull-right dn" id="layerControl">
+
+                    <span ng-repeat="icon in icons" data-id="device_{{$index}}"><i class="drop_hover"></i>{{icon.name}}</span>
+
+                    <!--<span data-id="device_0"><i class="drop_hover"></i>隧道灯</span>-->
+                    <!--<span data-id="device_1"><i class="drop_hover"></i>立柱式情报板</span>-->
+                    <!--<span data-id="device_2"><i class="drop_hover"></i>门架式情报板</span>-->
+                    <!--<span data-id="device_3"><i class="drop_hover"></i>吊装情报板</span>-->
+                    <!--<span data-id="device_4"><i class="drop_hover"></i>风机</span>-->
+                    <!--<span data-id="device_5"><i class="drop_hover"></i>两态车道指示器</span>-->
+                    <!--<span data-id="device_6"><i class="drop_hover"></i>三态车道指示器</span>-->
+                    <!--<span data-id="device_7"><i class="drop_hover"></i>枪机摄像机</span>-->
+                    <!--<span data-id="device_8"><i class="drop_hover"></i>球形摄像机</span>-->
+                    <!--<span data-id="device_9"><i class="drop_hover"></i>光强</span>-->
+                    <!--<span data-id="device_10"><i class="drop_hover"></i>风速风向监测器</span>-->
+                    <!--<span data-id="device_11"><i class="drop_hover"></i>交通信号灯</span>-->
+                    <!--<span data-id="device_12"><i class="drop_hover"></i>CO/VI</span>-->
+                    <!--<span data-id="device_13"><i class="drop_hover"></i>人行横洞标志</span>-->
+                </p>
+            </li>
+            <li ng-class="{'li_active':flag3}"><em ng-click="flag3=!flag3" data-toggle="dropdown" class="wrapper_icon wrapper_li_04 wrapper_size zz">添加设备<i
+                    class="fa fa-angle-down wrapper_i"></i></em>
+                <p ng-class="{true:'',false:'dn'}[flag3]"
+                   class=" wrapper_dropdown pull-right dn padding_null wrapper_span">
+                </p>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="wrapper_main" ng-class="{true:'',false:'dn'}[flag3]">
+    <div class="wrapper_div" id="wrapper_div">
+        <div class="wrapper_addsebei swiper-container" id="swiper-container">
+            <ul class="swiper-wrapper" id="deviceIconBox">
+                <li class="swiper-slide"><i>
+                    <img src="images/stat/index_01.png" alt=""/></i>隧道灯
+                </li>
+                <li class="swiper-slide"><i>
+                    <img src="images/stat/index_02.png" alt=""/></i>立柱式情报板
+                </li>
+                <li class="swiper-slide"><i>
+                    <img src="images/stat/index_03.png" alt=""/></i>门架式情报板
+                </li>
+                <li class="swiper-slide"><i>
+                    <img src="images/stat/index_04.png" alt=""/></i>吊装情报板
+                </li>
+                <li class="swiper-slide"><i>
+                    <img src="images/stat/index_05.png" alt=""/></i>风机
+                </li>
+                <li class="swiper-slide"><i>
+                    <img src="images/stat/index_06.png" alt=""/></i>两态车道控制标志
+                </li>
+                <li class="swiper-slide"><i>
+                    <img src="images/stat/index_06.png" alt=""/></i>三态车道控制标志
+                </li>
+                <li class="swiper-slide"><i>
+                    <img src="images/stat/index_07.png" alt=""/></i>枪机摄像机
+                </li>
+                <li class="swiper-slide"><i>
+                    <img src="images/stat/index_08.png" alt=""/></i>球形摄像机
+                </li>
+                <li class="swiper-slide"><i>
+                    <img src="images/stat/index_09.png" alt=""/></i>光强
+                </li>
+                <li class="swiper-slide"><i>
+                    <img src="images/stat/index_10.png" alt=""/></i>风速风向监测器
+                </li>
+                <li class="swiper-slide"><i>
+                    <img src="images/stat/index_11.png" alt=""/></i>交通信号灯
+                </li>
+                <li class="swiper-slide"><i>
+                    <img src="images/stat/index_12.png" alt=""/></i>CO/VI
+                </li>
+                <li class="swiper-slide"><i>
+                    <img src="images/stat/index_13.png" alt=""/></i>人行横洞标志
+                </li>
+                <li class="swiper-slide"><i>
+                    <img src="images/stat/index_14.png" alt=""/></i>能见度检测器
+                </li>
+                <li class="swiper-slide"><i>
+                    <img src="images/stat/index_15.png" alt=""/></i>车辆检测器
+                </li>
+<!--                 <li class="swiper-slide"><i>
+                    <img src="images/stat/index_16.png" alt=""/></i>车行横洞卷帘门
+                </li>-->
+            </ul>
+        </div>
+        <!-- Add Arrows -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+</div>
+<div class="highway highway_bg  daolu_bg" id="highwayBoxWrap">
+    <div id="highwayBox" style="min-height: 1000px;">
+
+    </div>
+</div>
+<div ng-include="'view/components/deviceAlert.html'"></div>

@@ -1,0 +1,76 @@
+﻿<div class="highway highway_bg  daolu_bg" id="highwayBoxWrap" style="height:763px;margin-top:0;">
+        <div id="highwayBox">
+        </div>
+</div>
+<div ng-include="'view/components/deviceAlert.html'" ></div>
+ <div ng-include="'view/components/PublicList.html'" ng-hide=""></div>
+
+
+<div class="col-md-12" style="padding:0;" ng-controller="PlanStart">
+    <div class="infoentry_info panel-body panel">
+        <ul class="row">
+            <li class="col-md-3">
+                <label class="col-md-3 mar_pad">预案名称：</label>
+                <input type="text" class="entry_input input_padding col-md-7" value="{{data.Plan_Name}}" disabled="disabled">
+            </li>
+
+            <li class="col-md-3">
+                <label class="col-md-4 mar_pad">恢复预案编号：</label>
+                <input type="text" class="entry_input input_padding col-md-7" value="{{data.RecoveryID}}" disabled="disabled" id="RecoveryID">
+            </li>
+            <li class="col-md-3">
+                <label class="col-md-3 mar_pad">所属机构：</label>
+                <input type="text" class="entry_input input_padding col-md-7" value="{{data.AGENCIES_Name}}" id="AGENCIES_TYPE" disabled="disabled">
+            </li>
+            <li class="col-md-3">
+                <label class="col-md-4 mar_pad">自动执行状态：</label>
+                <input type="text" class="entry_input input_padding col-md-7" value="{{data.AutoRun}}" id="Text3" disabled="disabled">
+            </li>
+        </ul>
+        <ul class="row">
+            <li class="col-md-3">
+                <label class="col-md-3 mar_pad">所属道路：</label>
+                <input type="text" class="entry_input input_padding col-md-7" value="{{data.RoadName}}" id="Text2" disabled="disabled">
+            </li>
+            <li class="col-md-3">
+                <label class="col-md-4 mar_pad">方      向：</label>
+                <input type="text" class="entry_input input_padding col-md-7" value="{{data.Device_Direction}}" id="Text4" disabled="disabled">
+            </li>
+            <li class="col-md-3">
+                <label class="col-md-3 mar_pad">告警类型：</label>
+                <input type="text" class="entry_input input_padding col-md-7" value="{{data.Event_Type_Name}}" id="Text5" disabled="disabled">
+            </li>
+            <li class="col-md-3">
+                <label class="col-md-4 mar_pad">告警级别：</label>
+                <input type="text" class="entry_input input_padding col-md-7" value="{{data.Event_Level_Name}}" id="Text6" disabled="disabled">
+            </li>
+        </ul>
+        <ul class="row">
+            <li class="col-md-3">
+                <label class="col-md-3 mar_pad">起始桩号：</label>
+                <input type="text" class="entry_input input_padding col-md-7" value="{{data.Start_Stake}}" disabled="disabled">
+            </li>
+            <li class="col-md-3">
+                <label class="col-md-4 mar_pad">结束桩号：</label>
+                <input type="text" class="entry_input input_padding col-md-7" value="{{data.End_Stake}}" disabled="disabled">
+            </li>
+
+            <li class="col-md-3">
+                <label class="col-md-3 mar_pad">风      向：</label>
+                <input type="text" class="entry_input input_padding col-md-7" value="{{data.Wind_Direction}}" id="Text7" disabled="disabled">
+            </li>
+
+        </ul>
+        <ul class="row">
+            <li class="col-md-3">
+                <label class="col-md-3 mar_pad">预案描述：</label>
+                <textarea class="entry_input input_padding col-md-9" style="height: 100px;" id="Plan_Details" disabled="disabled">{{data.Plan_Details}}</textarea>
+            </li>
+            <li class="col-md-3">
+                <span class="btn-save" id="Plan_Writes" ng-click="PlanWrites()">执行</span>
+            </li>
+
+        </ul>
+
+    </div>
+</div>

@@ -1,0 +1,154 @@
+﻿<!DOCTYPE html>
+<html ng-app="PrintPage">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="../../css/style.css" rel="stylesheet" />
+    <link href="../../css/style-responsive.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/swiper.min.css" />
+    <link href="../../css/sweetalert.css" rel="stylesheet" />
+    <link href="../../css/animate.min.css" rel="stylesheet" />
+    <link href="../../css/minimal.css" rel="stylesheet" />
+    <link href="../../css/square.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/traffic.css" />
+    <title>高速公路交通监控系统</title>
+</head>
+<body>
+    <div id="main_sys" ng-controller="PrintPageVedetstate">
+        <div class="t_system wrapper_main">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h1 class="statement_tit">{{ReportList.Title}}</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <section class="panel">
+
+                        <div class="panel-body padding_top">
+                            <div class="adv-table">
+
+                                <div class="row padding_rl">
+                                    <div class="col-md-3 mar_pad">
+                                        <p class="statment_row">
+                                            <label>设备名称：</label>
+                                            <input size="16" type="text" disabled="disabled" value="{{DEVICENAME}} ">
+                                        </p>
+
+                                    </div>
+                                    <div class="col-md-3 mar_pad">
+                                        <p class="statment_row">
+                                            <label>统计时间：</label>
+                                            <input size="16" type="text" disabled="disabled" value="{{Times}}">
+                                        </p>
+                                    </div>
+                                    <div class="col-md-3 mar_pad">
+                                        <p class="statment_row">
+                                            <label>统计人员：</label>
+                                            <input size="16" type="text" disabled="disabled" value="{{ReportList.UserName}}">
+                                        </p>
+                                    </div>
+                                    <div class="col-md-3 mar_pad">
+                                        <p class="statment_row">
+                                            <label>打印时间：</label>
+                                            <input size="16" type="text" disabled="disabled" value="{{NowTime}}">
+                                        </p>
+                                    </div>
+                                </div>
+                                <table class="display table table-bordered table-striped" id="dynamic-table">
+                                    <thead>
+                                       <tr>
+                                        <th>序号</th>
+                                        <th>统计时间</th>
+                                        <th class="hidden-phone">能见度</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="group_one">
+                                    <tr class="gradeX" ng-repeat="d in ReportList">
+                                        <td>{{$index+1}}</td>
+                                        <td>{{d.Report_Time}}</td>
+                                        <td>{{d.VISIBILITY}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script src="../../js/jquery-1.10.2.min.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/modernizr.min.js"></script>
+<script src="../../js/jquery.nicescroll.js"></script>
+<script src="../../js/handlebars.min.js"></script>
+<script src="../../js/scripts.js"></script>
+<script src="../../js/my/angular.min.js"></script>
+<script>
+    var app = angular.module('PrintPage', []);
+    app.controller('PrintPageVedetstate', function ($scope) {
+        $scope.GetQueryString = function (name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return decodeURIComponent(r[2]); return null;
+        }
+        if ($scope.GetQueryString("DeviceID") != "null") {
+            $.ajax({
+                type: 'get',
+                url: '/JTJK/Ashx/ReportForm.ashx',
+                async: false,
+                data: { type: "GetInfosByAgenciesIdAndTypeId", Device_TypeID: "12" },
+                success: function (data) {
+                    data = JSON.parse(data);
+                    for (var i = 0; i < data.length; i++) {
+                        if ($scope.GetQueryString("DeviceID") == data[i].DEVICE_ID) {
+                            $scope.DEVICENAME = data[i].DEVICE_NAME;
+                        }
+                    }
+                }
+            })
+        }
+        if ($scope.GetQueryString("StartTime") != "" && $scope.GetQueryString("StartTime") != "undefined" && $scope.GetQueryString("EndTime") != "" && $scope.GetQueryString("EndTime") != "undefined") {
+            $scope.Times = $scope.GetQueryString("StartTime") + "至" + $scope.GetQueryString("EndTime");
+        }
+        var date = new Date();
+        var seperator1 = "-";
+        $scope.NowTime = date.getFullYear() + seperator1 + ((+date.getMonth()) + 1) + seperator1 + date.getDate();
+        var JsonMessage = {
+            type: "GetJson",
+            funtype: "GetVIReport",
+            deviceid: $scope.GetQueryString("DeviceID"),
+            reportTimeStart: $scope.GetQueryString("StartTime"),
+            reportTimeEnd: $scope.GetQueryString("EndTime")
+        };
+        $.ajax({
+            type: 'get',
+            url: '/JTJK/Ashx/ReportForm.ashx',
+            async: false,
+            data: JsonMessage,
+            success: function (data) {
+                switch ($scope.GetQueryString("Type")) {
+                    case "Day":
+                        $scope.ReportList = JSON.parse(data).ListinfoDay;
+                        break;
+                    case "Month":
+                        $scope.ReportList = JSON.parse(data).ListinfoMonth;
+                        break;
+                    case "Year":
+                        $scope.ReportList = JSON.parse(data).ListinfoYear;
+                        break;
+                }
+                for (var i = 0; i < $scope.ReportList.length; i++) {
+                    $scope.ReportList[i].Report_Time = new Date($scope.ReportList[i].Report_Time).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '');
+                }
+                $scope.ReportList.UserName = JSON.parse(data).UserName;
+                $scope.ReportList.Title = $scope.GetQueryString("Title");
+            }
+        })
+
+        window.print();
+    })
+</script>
+

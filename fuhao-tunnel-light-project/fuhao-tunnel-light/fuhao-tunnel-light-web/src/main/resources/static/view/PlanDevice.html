@@ -1,0 +1,97 @@
+﻿<div>
+    <div class="highway highway_bg  daolu_bg" id="highwayBoxWrap" style="height:763px;margin-top:0;">
+        <div id="highwayBox">
+        </div>
+    </div>
+    <div ng-include="'view/components/deviceAlert.html'" ng-hide=""></div>
+   <!--  <div ng-include="'view/components/PublicList.html'" ng-hide=""></div>-->
+    <div class="col-md-12" style="padding:0;">
+        <div class="infoentry_info panel-body panel" ng-controller="IndexPlanDevice">
+            <ul class="row">
+                <li class="col-md-3">
+                    <label class="col-md-3 mar_pad">预案名称：</label>
+                    <input type="text" class="entry_input input_padding col-md-7" value="{{data.Plan_Name}}" id="Plan_Name">
+                </li>
+
+                <li class="col-md-3">
+                    <label class="col-md-4 mar_pad">恢复预案编号：</label>
+                    <input type="text" class="entry_input input_padding col-md-7" value="{{data.RecoveryID}}" disabled="disabled" id="RecoveryID">
+                </li>
+                <li class="col-md-3">
+                    <label class="col-md-3 mar_pad">所属机构：</label>
+                    <select class="entry_input input_padding col-md-7" id="AGENCIES_TYPE" ng-model="data.AGENCIES_ID">
+                        <option ng-repeat="x in Agencies" value="{{x.AGENCIES_ID}}">{{x.AGENCIES_NAME}}</option>
+                    </select>
+                </li>
+                <li class="col-md-3">
+                    <label class="col-md-4 mar_pad">自动执行状态：</label>
+                    <select class="entry_input input_padding col-md-7" id="AutoRun" ng-model="data.AutoRun">
+                        <option value="0">需要用户确认</option>
+                        <option value="1">自动执行</option>
+                    </select>
+                </li>
+            </ul>
+            <ul class="row">
+                <li class="col-md-3">
+                    <label class="col-md-3 mar_pad">所属道路：</label>
+                    <select class="entry_input input_padding col-md-7" id="RoadList" ng-model="data.RoadID">
+                        <option ng-repeat="x in RoadList" value="{{x.RoadID}}">{{x.RoadName}}</option>
+                    </select>
+                </li>
+                <li class="col-md-3">
+                    <label class="col-md-4 mar_pad">方      向：</label>
+                    <select
+                        class="entry_input input_padding col-md-7" id="Direction" ng-model="data.Device_Direction">
+                        <option ng-repeat="x in RoadDirection" value="{{x.RoadDirectionName}}">{{x.RoadDirectionName}}</option>
+                    </select>
+                </li>
+                <li class="col-md-3">
+                    <label class="col-md-3 mar_pad">告警类型：</label>
+                    <select class="entry_input input_padding col-md-7" id="Warningtype" ng-model="data.Event_Type">
+                        <option ng-repeat="x in WarningType" value="{{x.SYS_CODE}}">{{x.SYS_NAME}}</option>
+                    </select>
+                </li>
+                <li class="col-md-3">
+                    <label class="col-md-4 mar_pad">告警级别：</label>
+                    <select class="entry_input input_padding col-md-7" id="Warninglevel" ng-model="data.Event_Level">
+                        <option ng-repeat="x in WarningLevel" value="{{x.SYS_CODE}}">{{x.SYS_NAME}}</option>
+                    </select>
+                </li>
+            </ul>
+            <ul class="row">
+                <li class="col-md-3">
+                    <label class="col-md-3 mar_pad">起始桩号：</label>
+                    <input type="text" class="entry_input input_padding col-md-7" value="{{data.Start_Stake}}" id="Start_Stake">
+                </li>
+                <li class="col-md-3">
+                    <label class="col-md-4 mar_pad">结束桩号：</label>
+                    <input type="text" class="entry_input input_padding col-md-7" value="{{data.End_Stake}}" id="End_Stake">
+                </li>
+
+                <li class="col-md-3">
+                    <label class="col-md-3 mar_pad">风      向：</label>
+                    <select class="entry_input input_padding col-md-7" id="Wind_Direction" ng-model="data.Wind_Direction">
+                        <option value="正向">正向</option>
+                        <option value="逆向">逆向</option>
+                    </select>
+                </li>
+
+            </ul>
+            <ul class="row">
+                <li class="col-md-3">
+                    <label class="col-md-3 mar_pad">预案描述：</label>
+                    <textarea class="entry_input input_padding col-md-9" style="height: 100px;" id="Plan_Details">{{data.Plan_Details}}</textarea>
+                     
+                </li>
+                <li class="col-md-3">
+                   <span class="btn-save" ng-click="SaveReservePlan()">保存</span>
+                </li>
+
+            </ul>
+
+        </div>
+    </div>
+</div>
+<div class="bottom-box device-list-box dn" id="device-list">
+</div>
+

@@ -1,0 +1,139 @@
+<div class="t_system">
+    <div class="row ">
+        <div class="col-md-12">
+            <div class="infoentry_info panel-body panel">
+                <ul class="col-md-12">
+                    <!--     <li class="col-md-3">
+                        <label class="col-md-5 mar_pad">起始时间：</label>
+                        <input size="16" type="text" value="" readonly class="form_datetime entry_input input_padding col-md-7" style="cursor:no-drop">
+                    </li>
+                    <li class="col-md-2">
+                        <label class="col-md-1 mar_pad text-center"> - </label>
+                        <input size="16" type="text" value="" readonly class="form_datetime entry_input input_padding col-md-11" style="cursor:no-drop">
+                    </li>-->
+                    <li class="col-md-3">
+                        <label class="col-md-5 mar_pad"style="width: 30%;">预案编号：</label>
+                        <input type="text" ng-model="PlanID" class="col-md-5">
+                    </li>
+                    <li class="col-md-3">
+                        <label class="col-md-5 mar_pad" style="width: 30%;">起始桩号：</label>
+                        <input type="text" class=" col-md-5" ng-model="Start_Stake">
+                    </li>
+                    <li class="col-md-3">
+                        <label class="col-md-5 mar_pad" style="width: 30%;">结束桩号：</label>
+                        <input type="text" class=" col-md-5" ng-model="End_Stake">
+                    </li>
+                    <li class="col-md-3">
+                        <label class="col-md-5 mar_pad" style="width: 30%;">所属机构：</label>
+                        <select class="entry_input input_padding col-md-5" id="AGENCIES_ID" ng-model="AGENCIESID">
+                            <option value="">---<全部>---</option>
+                            <option ng-repeat="x in Agencies" value="{{x.AGENCIES_ID}}">{{x.AGENCIES_NAME}}</option>
+                        </select>
+                    </li>
+
+                </ul>
+                <ul class="col-md-12 mar_top">
+                    <li class="col-md-3">
+                        <label class="col-md-5 mar_pad" style="width: 30%;">所属道路：</label>
+                        <select class="entry_input input_padding col-md-5" ng-model="RoadID">
+                            <option value="">---<全部>---</option>
+                            <option ng-repeat="x in RoadList" value="{{x.RoadID}}">{{x.RoadName}}</option>
+                        </select>
+                    </li>
+                    <li class="col-md-3">
+                        <label class="col-md-5 mar_pad" style="width: 30%;">方      向：</label>
+                        <select class="entry_input input_padding col-md-5" ng-model="Direction">
+                            <option value="">---<全部>---</option>
+                            <option ng-repeat="x in RoadDirection" value="{{x.RoadDirectionName}}">{{x.RoadDirectionName}}</option>
+                        </select>
+                    </li>
+                    <li class="col-md-3">
+                        <label class="col-md-5 mar_pad" style="width: 30%;"> 告警类型：</label>
+                        <select class="entry_input input_padding col-md-5" ng-model="Warningtype">
+                            <option value="">---<全部>---</option>
+                            <option ng-repeat="x in WarningType" value="{{x.SYS_CODE}}">{{x.SYS_NAME}}</option>
+                        </select>
+                    </li>
+                    <li class="col-md-3">
+                        <label class="col-md-5 mar_pad" style="width: 30%;">告警级别：</label>
+                        <select class="entry_input input_padding col-md-5" ng-model="Warninglevel">
+                            <option value="">---<全部>---</option>
+                            <option ng-repeat="x in WarningLevel" value="{{x.SYS_CODE}}">{{x.SYS_NAME}}</option>
+                        </select>
+                    </li>
+
+                </ul>
+
+                <div class="row mar_top ">
+                    <p class=" mar_six mar_pad" style="float: right; margin-top: 20px!important;">
+
+                        <span ng-click="GetList(PlanID,Start_Stake,End_Stake,AGENCIESID,RoadID,Direction,Warningtype,Warninglevel)" class="excep_query query_but " style="cursor: pointer;">查询</span>
+                        <span ng-click="UpdatePlanDevice()" class="add_but" style="cursor: pointer;">新增预案信息</span>
+                    </p>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <section class="panel">
+
+                <div class="panel-body">
+                    <div class="adv-table">
+                        <table class="display table table-bordered table-striped" id="dynamic-table">
+                            <thead>
+                                <tr>
+                                    <th>预案名称</th>
+                                    <th>所属机构</th>
+                                    <th>所属道路</th>
+                                    <th class="hidden-phone">方向</th>
+                                    <th class="hidden-phone">告警类型</th>
+                                    <th class="hidden-phone">告警级别</th>
+                                    <th class="hidden-phone">起始桩号</th>
+                                    <th class="hidden-phone">结束桩号</th>
+                                    <th class="hidden-phone">风向</th>
+                                    <th class="hidden-phone">操作</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody id="group_one">
+                                <tr class="gradeX" ng-repeat="d in data">
+                                    <td>{{d.Plan_Name}}</td>
+                                    <td>{{d.AGENCIES_Name}}</td>
+                                    <td>{{d.RoadName}}</td>
+                                    <td class="center hidden-phone">{{d.Device_Direction}}</td>
+                                    <td class="center hidden-phone">{{d.Event_Type_Name}}</td>
+                                    <td class="center hidden-phone">{{d.Event_Level_Name}}</td>
+                                    <td class="center hidden-phone">{{d.Start_Stake}}</td>
+                                    <td class="center hidden-phone">{{d.End_Stake}}</td>
+                                    <td class="center hidden-phone">{{d.Wind_Direction}}</td>
+                                    <td class="center hidden-phone bton">
+                                        <span class="excep_query" ng-click="UpdatePlanDevice(d.Plan_ID,d.AGENCIES_ID)">修改</span>
+                                        <span class="excep_query" ng-click="PlanWrites(d.Plan_ID,d.AGENCIES_ID)">执行</span>
+                                        <span class="excep_query" ng-click="PlanDeWrites(d.Plan_ID,d.AGENCIES_ID)">恢复</span>
+                                        <span class="excep_query" ng-click="Delete(d)">删除</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-lg-12">
+                        <!--<ul class="infotain_page col-md-10">
+                            <a href="#" onclick="page.prePage();"><</a>
+                            <a id="divFood"></a>
+                            <a href="#" onclick="page.nextPage();">></a>
+                            <a class="last_page" id="pageCount"></a>
+                            <a class="last_text_page dn" id="rowCount"></a>
+                        </ul>-->
+                        <!--<div class="tcdPageCode"></div>-->
+                        <tm-pagination conf="paginationConf"></tm-pagination>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+

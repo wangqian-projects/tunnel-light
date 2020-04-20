@@ -1,0 +1,28 @@
+﻿<div ng-controller="publiclist">
+    <div ng-class="{'right':showBox,'left':!showBox}" class="btn-circle" ng-click="showPanel()"></div>
+    <div ng-if="showBox" class="t_system" style="width: 532px; height: 452px; position: absolute; right: 0; top: 260px; padding: 0; background: #eff0f4;">
+        <div class="adv-table">
+            <table class="display table table-bordered table-striped" id="dynamic-table">
+                <thead>
+                    <tr>
+                        <th>设备编号</th>
+                        <th>预执行内容</th>
+                        <th>执行状态</th>
+                    </tr>
+                </thead>
+                <tbody id="group_one">
+                    <tr class="gradeX" ng-repeat="d in data" ng-click="BtnID(d.Device_ID)">
+                        <td class="center hidden-phone" >{{d.Device_ID}}</td>
+                        <td class="center hidden-phone">{{d.Control_Content}}</td>
+                        <td class="center hidden-phone">{{d.ZXState}}</td>
+                    </tr>
+                </tbody>
+            </table>
+                    <div class="col-lg-12" style="width:598px; margin-top:-20px;background:#ffffff">
+            <tm-pagination conf="paginationConf"></tm-pagination>
+            <span id="statistics">共有数据{{AllNumber}}条,执行成功0条,执行失败或未执行{{AllNumber}}条</span>
+                        <input type="hidden" id="LaterZX" />
+        </div>
+        </div>
+    </div>
+</div>

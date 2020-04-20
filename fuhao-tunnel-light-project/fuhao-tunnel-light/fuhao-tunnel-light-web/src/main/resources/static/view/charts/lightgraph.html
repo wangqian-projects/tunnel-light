@@ -1,0 +1,21 @@
+<div class="t_system">
+    <div class="row ">
+        <div class="col-md-12">
+            <div class="infoentry_info panel-body panel pad_but">
+                <div class="col-md-12">
+                    <div id="Light" class="lineChart"></div>
+                </div>
+                <div class="col-md-12" style="margin-top: 57px;">
+                    <ul>
+                        <li class="col-md-4">
+                            <label class="col-md-3 mar_pad">统计设备：</label>
+                            <select class="entry_input col-md-7">
+                                <option ng-repeat="d in GetDeviceName" value="{{d.DEVICE_ID}}">{{d.DEVICE_NAME}}</option>
+                            </select>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

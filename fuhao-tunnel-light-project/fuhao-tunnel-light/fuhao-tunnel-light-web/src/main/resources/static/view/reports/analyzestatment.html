@@ -1,0 +1,482 @@
+<div class="row ">
+    <div class="col-md-12">
+        <div class="infoentry_info panel-body panel">
+            <ul class="ymd" id="ymd">
+                <li>日</li>
+                <li>月</li>
+                <li>年</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="main_sys">
+    <!-- body t_system start-->
+    <div class="t_system wrapper_main">
+        <div class="row ">
+            <div class="col-md-12">
+                <div class="infoentry_info panel-body panel">
+                    <h1 class="statement_tit">事件分析日报表</h1>
+                    <ul>
+                        <li class="col-md-3">
+                            <label>设备名称：</label>
+                            <select class="entry_input wedet_w">
+                                <option>
+                                    发布信息
+                                </option>
+                                <option>
+                                    发布信息
+                                </option>
+                                <option>
+                                    发布信息
+                                </option>
+                                <option>
+                                    发布信息
+                                </option>
+                            </select>
+                        </li>
+                        <li class="col-md-3">
+                            <label>查询时间</label>
+                            <input size="16" type="text" value="2012-06-15 14:45" readonly
+                                   class="form_datetime entry_input input_padding wedet_w" style="cursor:no-drop">
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <section class="panel">
+
+                    <div class="panel-body padding_top">
+                        <div class="adv-table">
+
+                            <div class="row padding_rl">
+                                <div class="col-md-3 mar_pad">
+                                    <p class="statment_row">
+                                        <label>设备名称：</label>
+                                        <input size="16" type="text" disabled="disabled" value="车辆检测器 ">
+                                    </p>
+
+                                </div>
+                                <div class="col-md-3 mar_pad">
+                                    <p class="statment_row">
+                                        <label>统计时间：</label>
+                                        <input size="16" type="text" disabled="disabled" value="2015/9/20">
+                                    </p>
+                                </div>
+                                <div class="col-md-3 mar_pad">
+                                    <p class="statment_row">
+                                        <label>统计人员：</label>
+                                        <input size="16" type="text" disabled="disabled" value="90">
+                                    </p>
+                                </div>
+                                <div class="col-md-3 mar_pad">
+                                    <p class="statment_row">
+                                        <label>打印时间：</label>
+                                        <input size="16" type="text" disabled="disabled" value="2015/9/20">
+                                    </p>
+                                </div>
+                            </div>
+                            <table class="display table table-bordered table-striped" id="dynamic-table">
+                                <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>统计时间</th>
+                                    <th class="hidden-phone">事件次数</th>
+                                </tr>
+                                </thead>
+                                <tbody id="group_one">
+                                <tr class="gradeX">
+                                    <td>1</td>
+                                    <td>1小时</td>
+                                    <td></td>
+                                </tr>
+                                <tr class="gradeX">
+                                    <td>1</td>
+                                    <td>2小时</td>
+                                    <td></td>
+
+                                </tr>
+                                <tr class="gradeX">
+                                    <td>1</td>
+                                    <td>1时</td>
+                                    <td></td>
+
+                                </tr>
+                                <tr class="gradeX">
+                                    <td>1</td>
+                                    <td>1时</td>
+                                    <td></td>
+
+                                </tr>
+                                <tr class="gradeX">
+                                    <td>1</td>
+                                    <td>1时</td>
+                                    <td></td>
+
+                                </tr>
+                                <tr class="gradeX">
+                                    <td>1</td>
+                                    <td>1时</td>
+                                    <td></td>
+
+                                </tr>
+                                <tr class="gradeX">
+                                    <td>1</td>
+                                    <td>1时</td>
+                                    <td></td>
+
+                                </tr>
+                                <tr class="gradeX">
+                                    <td>1</td>
+                                    <td>1时</td>
+                                    <td></td>
+
+                                </tr>
+                                <tr class="gradeX">
+                                    <td>1</td>
+                                    <td>1时</td>
+                                    <td></td>
+
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-lg-12">
+                            <ul class="infotain_page col-md-9">
+                                <a href="#" onclick="page.prePage();">
+                                    <</a>
+                                <a id="divFood"> </a>
+                                <a href="#" onclick="page.nextPage();">></a>
+                                <a class="last_page" id="pageCount"></a>
+                                <a class="last_text_page dn" id="rowCount">df</a>
+                            </ul>
+                            <!--<div class="col-md-3 f_r mar_pad">
+                                <span class="col-md-8"><em class="excel">打印报表</em></span>
+                                <span class="col-md-4 mar_pad"><em class="excel">导出Excel</em></span>
+                            </div>-->
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- body t_system end-->
+    <!-- body t_system start-->
+    <div class="t_system wrapper_main dn">
+        <div class="row ">
+            <div class="col-md-12">
+                <div class="infoentry_info panel-body panel">
+                    <h1 class="statement_tit">事件分析月报表</h1>
+                    <ul>
+                        <li class="col-md-3">
+                            <label>设备名称：</label>
+                            <select class="entry_input wedet_w">
+                                <option>
+                                    发布信息
+                                </option>
+                                <option>
+                                    发布信息
+                                </option>
+                                <option>
+                                    发布信息
+                                </option>
+                                <option>
+                                    发布信息
+                                </option>
+                            </select>
+                        </li>
+                        <li class="col-md-3">
+                            <label>查询时间</label>
+                            <input size="16" type="text" value="2012-06-15 14:45" readonly
+                                   class="form_datetime entry_input input_padding wedet_w" style="cursor:no-drop">
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <section class="panel">
+
+                    <div class="panel-body padding_top">
+                        <div class="adv-table">
+
+                            <div class="row padding_rl">
+                                <div class="col-md-3 mar_pad">
+                                    <p class="statment_row">
+                                        <label>设备名称：</label>
+                                        <input size="16" type="text" disabled="disabled" value="车辆检测器 ">
+                                    </p>
+
+                                </div>
+                                <div class="col-md-3 mar_pad">
+                                    <p class="statment_row">
+                                        <label>统计时间：</label>
+                                        <input size="16" type="text" disabled="disabled" value="2015/9/20">
+                                    </p>
+                                </div>
+                                <div class="col-md-3 mar_pad">
+                                    <p class="statment_row">
+                                        <label>统计人员：</label>
+                                        <input size="16" type="text" disabled="disabled" value="90">
+                                    </p>
+                                </div>
+                                <div class="col-md-3 mar_pad">
+                                    <p class="statment_row">
+                                        <label>打印时间：</label>
+                                        <input size="16" type="text" disabled="disabled" value="2015/9/20">
+                                    </p>
+                                </div>
+                            </div>
+                            <table class="display table table-bordered table-striped" id="dynamic-table">
+                                <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>统计时间</th>
+                                    <th class="hidden-phone">事件次数</th>
+                                </tr>
+                                </thead>
+                                <tbody id="group_one">
+                                <tr class="gradeX">
+                                    <td>1</td>
+                                    <td>1小时</td>
+                                    <td></td>
+                                </tr>
+                                <tr class="gradeX">
+                                    <td>1</td>
+                                    <td>2小时</td>
+                                    <td></td>
+
+                                </tr>
+                                <tr class="gradeX">
+                                    <td>1</td>
+                                    <td>1时</td>
+                                    <td></td>
+
+                                </tr>
+                                <tr class="gradeX">
+                                    <td>1</td>
+                                    <td>1时</td>
+                                    <td></td>
+
+                                </tr>
+                                <tr class="gradeX">
+                                    <td>1</td>
+                                    <td>1时</td>
+                                    <td></td>
+
+                                </tr>
+                                <tr class="gradeX">
+                                    <td>1</td>
+                                    <td>1时</td>
+                                    <td></td>
+
+                                </tr>
+                                <tr class="gradeX">
+                                    <td>1</td>
+                                    <td>1时</td>
+                                    <td></td>
+
+                                </tr>
+                                <tr class="gradeX">
+                                    <td>1</td>
+                                    <td>1时</td>
+                                    <td></td>
+
+                                </tr>
+                                <tr class="gradeX">
+                                    <td>1</td>
+                                    <td>1时</td>
+                                    <td></td>
+
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-lg-12">
+                            <ul class="infotain_page col-md-9">
+                                <a href="#" onclick="page.prePage();">
+                                    <</a>
+                                <a id="divFood"> </a>
+                                <a href="#" onclick="page.nextPage();">></a>
+                                <a class="last_page" id="pageCount"></a>
+                                <a class="last_text_page dn" id="rowCount">df</a>
+                            </ul>
+                            <!--<div class="col-md-3 f_r mar_pad">
+                                <span class="col-md-8"><em class="excel">打印报表</em></span>
+                                <span class="col-md-4 mar_pad"><em class="excel">导出Excel</em></span>
+                            </div>-->
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- body t_system end-->
+    <!-- body t_system start-->
+    <div class="t_system wrapper_main dn">
+        <div class="row ">
+            <div class="col-md-12">
+                <div class="infoentry_info panel-body panel">
+                    <h1 class="statement_tit">事件分析年报表</h1>
+                    <ul>
+                        <li class="col-md-3">
+                            <label>设备名称：</label>
+                            <select class="entry_input wedet_w">
+                                <option>
+                                    发布信息
+                                </option>
+                                <option>
+                                    发布信息
+                                </option>
+                                <option>
+                                    发布信息
+                                </option>
+                                <option>
+                                    发布信息
+                                </option>
+                            </select>
+                        </li>
+                        <li class="col-md-3">
+                            <label>查询时间</label>
+                            <input size="16" type="text" value="2012-06-15 14:45" readonly
+                                   class="form_datetime entry_input input_padding wedet_w" style="cursor:no-drop">
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <section class="panel">
+
+                    <div class="panel-body padding_top">
+                        <div class="adv-table">
+
+                            <div class="row padding_rl">
+                                <div class="col-md-3 mar_pad">
+                                    <p class="statment_row">
+                                        <label>设备名称：</label>
+                                        <input size="16" type="text" disabled="disabled" value="车辆检测器 ">
+                                    </p>
+
+                                </div>
+                                <div class="col-md-3 mar_pad">
+                                    <p class="statment_row">
+                                        <label>统计时间：</label>
+                                        <input size="16" type="text" disabled="disabled" value="2015/9/20">
+                                    </p>
+                                </div>
+                                <div class="col-md-3 mar_pad">
+                                    <p class="statment_row">
+                                        <label>统计人员：</label>
+                                        <input size="16" type="text" disabled="disabled" value="90">
+                                    </p>
+                                </div>
+                                <div class="col-md-3 mar_pad">
+                                    <p class="statment_row">
+                                        <label>打印时间：</label>
+                                        <input size="16" type="text" disabled="disabled" value="2015/9/20">
+                                    </p>
+                                </div>
+                            </div>
+                            <table class="display table table-bordered table-striped" id="dynamic-table">
+                                <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>统计时间</th>
+                                    <th class="hidden-phone">事件次数</th>
+                                </tr>
+                                </thead>
+                                <tbody id="group_one">
+                                <tr class="gradeX">
+                                    <td>1</td>
+                                    <td>1小时</td>
+                                    <td></td>
+                                </tr>
+                                <tr class="gradeX">
+                                    <td>1</td>
+                                    <td>2小时</td>
+                                    <td></td>
+
+                                </tr>
+                                <tr class="gradeX">
+                                    <td>1</td>
+                                    <td>1时</td>
+                                    <td></td>
+
+                                </tr>
+                                <tr class="gradeX">
+                                    <td>1</td>
+                                    <td>1时</td>
+                                    <td></td>
+
+                                </tr>
+                                <tr class="gradeX">
+                                    <td>1</td>
+                                    <td>1时</td>
+                                    <td></td>
+
+                                </tr>
+                                <tr class="gradeX">
+                                    <td>1</td>
+                                    <td>1时</td>
+                                    <td></td>
+
+                                </tr>
+                                <tr class="gradeX">
+                                    <td>1</td>
+                                    <td>1时</td>
+                                    <td></td>
+
+                                </tr>
+                                <tr class="gradeX">
+                                    <td>1</td>
+                                    <td>1时</td>
+                                    <td></td>
+
+                                </tr>
+                                <tr class="gradeX">
+                                    <td>1</td>
+                                    <td>1时</td>
+                                    <td></td>
+
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-lg-12">
+                            <ul class="infotain_page col-md-9">
+                                <a href="#" onclick="page.prePage();">
+                                    <</a>
+                                <a id="divFood"> </a>
+                                <a href="#" onclick="page.nextPage();">></a>
+                                <a class="last_page" id="pageCount"></a>
+                                <a class="last_text_page dn" id="rowCount">df</a>
+                            </ul>
+                            <!--<div class="col-md-3 f_r mar_pad">
+                                <span class="col-md-8"><em class="excel">打印报表</em></span>
+                                <span class="col-md-4 mar_pad"><em class="excel">导出Excel</em></span>
+                            </div>-->
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- body t_system end-->
+</div>
+

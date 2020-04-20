@@ -1,0 +1,87 @@
+﻿<div class="row ">
+    <div class="col-md-12">
+        <div class="infoentry_info panel-body panel">
+            <ul>
+                <li class="col-md-3">
+                    <label>事件类型：</label>
+                    <select class="entry_input wedet_w" ng-model="Event_Type">
+                        <option ng-repeat="d in WarningType" value="{{d.SYS_CODE}}">{{d.SYS_NAME}}</option>
+                    </select>
+                </li>
+                <li class="col-md-3">
+                    <label>事件等级：</label>
+                    <select class="entry_input wedet_w" ng-model="Event_Level">
+                        <option ng-repeat="d in WarningLevel" value="{{d.SYS_CODE}}">{{d.SYS_NAME}}</option>
+                    </select>
+                </li>
+                <li class="col-md-3">
+                    <label class="col-md-4 mar_pad">统计时间：</label>
+                    <input size="16" type="text" value="" readonly id="datetimepicker"
+                        class="form_datetime entry_input input_padding col-md-8" style="cursor: no-drop" ng-model="StartTime">
+                </li>
+                <li class="col-md-3">
+                    <label class="col-md-2 text-center" style="padding: 0!important;">至</label>
+                    <input size="16" type="text" value="" readonly id="datetimepicker2"
+                        class="form_datetime entry_input input_padding col-md-8" style="cursor: no-drop" ng-model="EndTime">
+                </li>
+
+                <li class="col-md-3">
+                    <label>处置状态：</label>
+                    <select class="entry_input wedet_w" ng-model="Flag">
+                        <option value="0">未处理</option>
+                        <option value="1">已处理</option>
+                        <option value="2">处理中</option>
+                    </select>
+                </li>
+                <li class="col-md-2 f_r">
+                    <span class="excep_query f_r" style="cursor: pointer;" ng-click="GetList(Event_Type,Event_Level,Flag,StartTime,EndTime)">查询</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <section class="panel">
+
+            <div class="panel-body">
+                <div class="adv-table">
+                    <table class="display table table-bordered table-striped" id="dynamic-table">
+                        <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>事件类型</th>
+                                <th class="hidden-phone">事件内容</th>
+                                <th class="hidden-phone">事件等级</th>
+                                <th class="hidden-phone">事件桩号</th>
+                                <th class="hidden-phone">事件位置</th>
+                                <th class="hidden-phone">事件方向</th>
+                                <th class="hidden-phone">事件时间</th>
+                                <th class="hidden-phone">处置状态</th>
+                            </tr>
+                        </thead>
+                        <tbody id="group_one">
+                            <tr class="gradeX" ng-repeat="d in data">
+                                <td>{{$index+1}}</td>
+                                <td>{{d.Event_Type_Name}}</td>
+                                 <td class="center hidden-phone">{{d.Event_details}}</td>
+                                 <td class="center hidden-phone">{{d.Event_Level_Name}}</td>
+                                 <td class="center hidden-phone">{{d.Event_Stake}}</td>
+                                 <td class="center hidden-phone">{{d.Event_Location}}</td>
+                                 <td class="center hidden-phone">{{d.Event_Direction}}</td>
+                                 <td class="center hidden-phone">{{d.Event_Time}}</td>
+                                 <td class="center hidden-phone">{{d.Deal_Flag_Name}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-lg-12">
+                    <tm-pagination conf="paginationConf"></tm-pagination>
+
+                </div>
+            </div>
+        </section>
+    </div>
+
+</div>
+</div>

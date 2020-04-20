@@ -1,0 +1,67 @@
+﻿<div class="row">
+    <div class="col-sm-12">
+        <section class="panel">
+            <div class="panel-body">
+                <div class="adv-table">
+                    预案执行日志
+                    <table class="display table table-bordered table-striped" id="dynamic-table">
+                        <thead>
+                            <tr>
+                                <th>执行编号</th>
+                                <th>预案编号</th>
+                                <th>异常事件编号</th>
+                                <th class="hidden-phone">运行时间</th>
+                                <th class="hidden-phone">执行用户</th>
+                                <th class="hidden-phone">备注</th>
+                            </tr>
+                        </thead>
+                        <tbody id="group_one">
+                            <tr class="gradeX">
+                                <td>{{planlog.ExecutionID}}</td>
+                                <td>{{planlog.Plan_ID}}</td>
+                                <td>{{planlog.AbEvent_ID}}</td>
+                                <td class="center hidden-phone">{{planlog.Run_Time}}</td>
+                                <td class="center hidden-phone">{{planlog.CreateUser}}</td>
+                                <td class="center hidden-phone">{{planlog.Note}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+        <section class="panel">
+            <div class="panel-body">
+                <div class="adv-table">
+                    预案设备执行日志
+                    <table class="display table table-bordered table-striped" id="Table1">
+                        <thead>
+                            <tr>
+                                <th>编号</th>
+                                <th>预案执行编号</th>
+                                <th>设备编号</th>
+                                <th class="hidden-phone">操作内容</th>
+                                <th class="hidden-phone">操作命令</th>
+                                <th class="hidden-phone">执行状态</th>
+                                <th class="hidden-phone">回显</th>
+                                <th class="hidden-phone">备注</th>
+                            </tr>
+                        </thead>
+                        <tbody id="Tbody1">
+                            <tr class="gradeX">
+                                <td>{{plandevicelog.ID}}</td>
+                                <td>{{plandevicelog.ExecutionID}}</td>
+                                <td>{{plandevicelog.Device_ID}}</td>
+                                <td class="center hidden-phone">{{plandevicelog.Control_Content}}</td>
+                                <td class="center hidden-phone">{{plandevicelog.Control_CMD}}</td>
+                                <td class="center hidden-phone">{{plandevicelog.ExecutionState}}</td>
+                                <td class="center hidden-phone">{{plandevicelog.DeviceState}}</td>
+                                <td class="center hidden-phone">{{plandevicelog.Note}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+

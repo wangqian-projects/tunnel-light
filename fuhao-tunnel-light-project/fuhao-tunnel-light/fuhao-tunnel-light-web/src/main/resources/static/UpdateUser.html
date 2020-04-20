@@ -1,0 +1,305 @@
+﻿<!DOCTYPE html>
+<html ng-app="AppUser">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="shortcut icon" href="images/bitbug_favicon.ico" >    
+    <title>高速公路交通监控系统</title>
+    <!--icheck-->
+    <link href="css/minimal.css" rel="stylesheet">
+    <link href="css/square.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/traffic.css" />
+    <!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">	
+		<!--common-->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/style-responsive.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/swiper.min.css" />
+    <link href="css/sweetalert.css" rel="stylesheet" />
+    <style>
+        body {
+            background: #fff;
+        }
+
+        .aut_conter {
+            width: 60%;
+            margin: 32px auto 84px;
+        }
+
+            .aut_conter li {
+                margin-top: 10px;
+            }
+
+                .aut_conter li .mar_pad {
+                    font-size: 16px;
+                    color: #7b7b7b;
+                }
+
+                .aut_conter li .entry_input {
+                    height: 40px;
+                }
+
+            .aut_conter .six > em {
+                height: 38px;
+                width: 86px;
+                border: 1px solid #c3c2c2;
+                text-align: center;
+                line-height: 38px;
+                font-size: 16px;
+                display: block;
+                float: left;
+                margin-right: 30px;
+            }
+
+        .six_hover {
+            height: 38px;
+            width: 86px;
+            border: 1px solid #6dc5a3!important;
+            text-align: center;
+            line-height: 38px;
+            font-size: 16px;
+            position: relative;
+        }
+
+            .six_hover:before {
+                content: " ";
+                background: url(../html_home/images/die.png) no-repeat;
+                width: 18px;
+                height: 18px;
+                background-size: cover;
+                display: block;
+                position: absolute;
+                bottom: 0;
+                right: 0;
+            }
+
+        .operate_aut > p {
+            width: 128px;
+            height: 38px;
+            border: 1px solid #c3c2c2;
+            text-align: center;
+            line-height: 38px;
+            font-size: 16px;
+            display: block;
+            float: left;
+            margin-right: 30px;
+        }
+
+        .operateaut_hover {
+            width: 128px;
+            height: 38px;
+            border: 1px solid #6dc5a3!important;
+            position: relative;
+        }
+
+            .operateaut_hover:before {
+                content: " ";
+                background: url(../html_home/images/die.png) no-repeat;
+                width: 18px;
+                height: 18px;
+                background-size: cover;
+                display: block;
+                position: absolute;
+                bottom: 0;
+                right: 0;
+            }
+
+        .aut_tit {
+            display: block;
+            border-bottom: 1px solid #dedede;
+            font-size: 22px;
+            color: #6dc5a3;
+        }
+
+            .aut_tit em {
+                padding: 25px 0;
+                margin: 0 20px;
+                border-bottom: 3px solid #6dc5a3;
+                overflow: hidden;
+                display: block;
+                width: 180px;
+                text-align: center;
+                font-size: 22px;
+                font-weight: bold;
+            }
+
+        .autok {
+            width: 120px;
+            height: 40px;
+            background: #6dc5a3;
+            border: none;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="row aut_conter">
+        <div class="col-lg-12 aut_tit">
+            <em>修改用户信息</em>
+        </div>
+        <div class="col-md-12" ng-controller="User">
+            <div class="infoentry_info panel-body panel">
+                <ul>
+                    <li class="col-md-12">
+                        <label class="c_79b0 col-md-2 mar_pad" style="margin-left: 200px;text-align:right">请输入新密码：</label>
+                        <input type="password" class="entry_input input_padding col-md-4" ng-model="Password"  ng-blur="CheckLoginPassword()" />
+                    </li>
+                    <li class="col-md-12">
+                        <label class="c_79b0 col-md-2 mar_pad" style="margin-left: 200px;text-align:right">确认密码：</label>
+                        <input type="password" class="entry_input input_padding col-md-4" ng-model="UserList.PassWordReg"  ng-blur="CheckPasswordReg()"/>
+                        <span ng-show="RexArray.IsPasswordReg">密码不一致。</span>
+                    </li>
+                    <li class="col-md-12">
+                        <label class="c_79b0 col-md-2 mar_pad" style="margin-left: 200px;text-align:right">真实姓名：</label>
+                        <input type="text" class="entry_input input_padding col-md-4" ng-model="UserList.UserName" value="UserList.UserName" ng-blur="CheckLoginUserName()" />
+                    </li>
+                    <li class="col-md-12">
+                        <label class="c_79b0 col-md-2 mar_pad" style="margin-left: 200px;text-align:right">性别：</label>
+                        <!--    <div class="six col-md-10 mar_pad">
+                            <em class="six_hover">男</em>
+                            <em>女</em>
+                        </div>-->
+                        <div class=" col-md-4 register_left">
+                            <p style="margin-top: 5px;">
+                                <input type="radio" name="Sex" ng-model="UserList.Sex" value="男" ng-checked="{{UserList.Sex=='男'}}" -style="width: 14px;margin-right: 10px;"/>男
+                            </p>
+                            <p style="margin-top: 5px;">
+                                <input type="radio" name="Sex" ng-model="UserList.Sex" value="女" ng-checked="{{UserList.Sex=='女'}}" -style="width: 14px;margin-right: 10px;"/>女
+                            </p>
+                        </div>
+                    </li>
+                    <li class="col-md-12">
+                        <label class="c_79b0 col-md-2 mar_pad" style="margin-left: 200px;text-align:right">年龄：</label>
+                        <input type="text" class="entry_input input_padding col-md-4"  ng-model="UserList.Age" ng-blur="CheckAge()"/>
+                        <span ng-show="RexArray.IsNullAge">年龄不能为空。</span>
+                        <span ng-show="RexArray.IsRight">请输入正确格式。</span>
+                    </li>
+                    <li class="col-md-12">
+                        <label class="c_79b0 col-md-2 mar_pad" style="margin-left: 200px;text-align:right">联系方式：</label>
+                        <input type="text" class="entry_input input_padding col-md-4" ng-model="UserList.Phone"  ng-blur="CheckPhone()" />
+                        <span ng-show="RexArray.IsNullPhone">联系方式不能为空。</span>
+                        <span ng-show="RexArray.IsPhoneRight">请输入正确格式。</span>
+                    </li>
+                    <li class="col-md-12">
+                        <label class="c_79b0 col-md-2 mar_pad" style="margin-left: 200px;text-align:right">所在单位：</label>
+                        <input type="text" class="entry_input input_padding col-md-5" ng-model="UserList.Company" style="width: 33.33333333%;" ng-blur="CheckCompany()"/>
+                        <span ng-show="RexArray.IsNullCompany">所在单位不能为空。</span>     
+                    </li>
+                    <li class="col-md-12">
+                        <label class="c_79b0 col-md-2 mar_pad" style="margin-left: 200px;text-align:right">职务：</label>
+                        <input type="text" class="entry_input input_padding col-md-4" ng-model="UserList.Post" />
+                    </li>
+                    <li class="col-md-12">
+                        <label class="c_79b0 col-md-2 mar_pad" style="margin-left: 200px;text-align:right">邮箱：</label>
+                        <input type="text" class="entry_input input_padding col-md-4" ng-model="UserList.Email" ng-blur="CheckEmail()"/>
+                                                <span ng-show="RexArray.IsNullEmail">邮箱不能为空。</span>
+                        <span ng-show="RexArray.IsEmailRight">请输入正确格式。</span>
+                    </li>
+                    <li class="col-md-12">
+                        <label class="c_79b0 col-md-2 mar_pad"></label>
+                        <div class="col-md-4 mar_pad" style="margin-left: 250px;">
+                            <input type="button" value="确定" class="autok" ng-click="SaveMessage()"/>
+                        </div>
+                    </li>
+
+                </ul>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+<script src="js/jquery-1.10.2.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/modernizr.min.js"></script>
+<script src="js/jquery.nicescroll.js"></script>
+<script src="js/handlebars.min.js"></script>
+<!--common scripts for all pages-->
+<script src="js/scripts.js"></script>
+<script src="js/sweetalert.min.js"></script>
+<script src="js/my/angular.min.js"></script>
+<script>
+    var app = angular.module('AppUser', []);
+    app.controller('User', function ($scope) {
+        $scope.UserList = {};
+        $scope.Password = null;
+        $.ajax({
+            type: 'get',
+            url: '/JTJK/Ashx/Login.ashx',
+            async: false,
+            data: { type: "GetUserMessageByCookies" },
+            success: function (data) {
+                $scope.UserList = JSON.parse(data)[0];
+                //$scope.$apply($scope.UserList);
+            }
+        })
+        // $scope.$apply($scope.UserList);
+        $scope.RexArray = {};
+        $scope.RexArray.CheckSame = false;
+        $scope.RexArray.IsNullPassword = false;
+        $scope.RexArray.IsNullUserName = false;
+        $scope.RexArray.IsNull = false;
+        $scope.RexArray.IsNullAge = false;
+        $scope.RexArray.IsRight = false;
+        $scope.RexArray.IsNullPhone = false;
+        $scope.RexArray.IsPhoneRight = false;
+        $scope.RexArray.IsPasswordReg = false;
+        $scope.RexArray.IsNullCompany = false;
+        $scope.RexArray.IsNullEmail = false;
+        $scope.RexArray.IsEmailRight = false;
+        $scope.SaveMessage = function () {
+            for (var i in $scope.RexArray) {
+                if ($scope.RexArray[i] == true) {
+                    swal("数据格式不正确！");
+                    return;
+                }
+            }
+            if ($scope.UserList.Sex == "" || $scope.UserList.Sex == undefined) {
+                swal("请选择性别！");
+                return;
+            }
+            $scope.UserList.Password = $scope.Password;
+            $.ajax({
+                type: 'get',
+                url: '/JTJK/Ashx/Login.ashx',
+                async: false,
+                data: { type: "UpdateUser", data: JSON.stringify($scope.UserList) },
+                success: function (data) {
+                    swal({
+                        title: data,
+                        confirmButtonText: "确定",
+                    }, function () {
+                        location.href = "/JTJK/traffic/html_home/index.html#/indexMap";
+                    });
+                }
+            })
+        }
+        $scope.CheckAge = function () {
+            $scope.RexArray.IsNullAge = ($scope.UserList.Age == "" || $scope.UserList.Age == undefined) ? true : false;
+            $scope.RexArray.IsRight = /^[0-9]*$/.test($scope.UserList.Age) == true ? false : true;
+        }
+        $scope.CheckPhone = function () {
+            $scope.RexArray.IsNullPhone = ($scope.UserList.Phone == "" || $scope.UserList.Phone == undefined) ? true : false;
+            $scope.RexArray.IsPhoneRight = /(^1[34578]\d{9}$)|(^(\(\d{3,4}\)|\d{3,4}-|\s)?\d{7,14}$)/.test($scope.UserList.Phone) == true ? false : true;
+        }
+        $scope.CheckLoginPassword = function () {
+            $scope.RexArray.IsNullPassword = ($scope.UserList.Password == "" || $scope.UserList.Password == undefined) ? true : false;
+        }
+        $scope.CheckLoginUserName = function () {
+            $scope.RexArray.IsNullUserName = ($scope.UserList.UserName == "" || $scope.UserList.UserName == undefined) ? true : false;
+        }
+        $scope.CheckPasswordReg = function () {
+            $scope.RexArray.IsPasswordReg = ($scope.Password == $scope.UserList.PassWordReg) ? false : true;
+        }
+        $scope.CheckCompany = function () {
+            $scope.RexArray.IsNullCompany = ($scope.UserList.Company == "" || $scope.UserList.Company == undefined) ? true : false;
+        }
+        $scope.CheckEmail = function () {
+            $scope.RexArray.IsNullEmail = ($scope.UserList.Email == "" || $scope.UserList.Email == undefined) ? true : false;
+            $scope.RexArray.IsEmailRight = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test($scope.UserList.Email) ? false : true;
+        }
+    });
+</script>
+</html>

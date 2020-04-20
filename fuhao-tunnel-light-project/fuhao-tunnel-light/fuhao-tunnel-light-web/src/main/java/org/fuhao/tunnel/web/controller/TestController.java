@@ -1,4 +1,4 @@
-package org.fuhao.tunnel-light.web.controller;
+package org.fuhao.tunnel.web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;

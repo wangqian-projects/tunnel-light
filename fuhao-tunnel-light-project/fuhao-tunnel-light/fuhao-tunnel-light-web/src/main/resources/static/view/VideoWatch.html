@@ -1,0 +1,587 @@
+﻿<html>
+<head>
+<title>test</title>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<script>
+    var login_stu = "";
+    var s_width;
+    var s_height;
+    function init() {
+        for (i = 0; i < 255; i++) {
+            varItem = new Option(i + 1, i);
+            selectPos.options.add(varItem);
+        }
+        for (i = 0; i < 8; i++) {
+            varItem = new Option(i + 1, i);
+            selectAuxiliary.options.add(varItem);
+        }
+
+        var height = screen.height;
+        var width = screen.width;
+
+        if (width == 1024) {
+            s_width = 750;
+            s_height = 500;
+        }
+        else if (width == 1152) {
+            s_width = 860;
+            s_height = 540;
+        }
+        else if (width == 1280) {
+            if (height == 1024) {
+                s_width = 1020;
+                s_height = 700;
+            }
+            else if (height == 960) {
+                s_width = 1000;
+                s_height = 640;
+            }
+            else if (height < 960) {
+                s_width = 980;
+                s_height = 500;
+            }
+        }
+        else if (width == 800) {
+            s_width = 650;
+            s_height = 400;
+        }
+        else {
+            s_width = 830;
+            s_height = 500;
+        }
+
+        IP_CAM.style.height = s_height;
+        IP_CAM.style.width = s_width - 100;
+    }
+    function login_OK() {
+        //接口调用详见说明文档
+        //	var login_stu = IP_CAM.Login("http://192.168.1.233/",9660,"santachi","ihcatnas");////172.16.6.98
+        IPAddr = document.getElementById("IP").value;
+        userName = document.getElementById("UserName").value;
+        strPwd = document.getElementById("PassWord").value;
+        iPort = document.getElementById("LoginPort").value;
+        var login_stu = IP_CAM.Login(IPAddr, iPort, userName, strPwd);
+        if (login_stu == 0) {
+            //下面这两种方式选择其一
+            //这是集成通道树的视频界面
+            ///	IP_CAM.ShowChannelTree(1,0,180,s_height);
+            //仅为视频界面
+            IP_CAM.ShowChannelTree(0, 0, 0, 0);
+
+            //改变控件的大小
+            IP_CAM.ResetWindowsPos(s_width, s_height);
+
+            //下面这两种方式选择其一
+            //这是集成按钮功能的播放界面
+            IP_CAM.SelectRemoteMode(1);
+            //仅为原始播放界面
+            //	IP_CAM.SelectRemoteMode(0);
+
+            IP_CAM.SelectAlarmMode(1);
+
+            //单画面
+            IP_CAM.VideoOne();
+            document.getElementById("VideoMenu1").disabled = false;
+            document.getElementById("VideoMenu4").disabled = false;
+            document.getElementById("VideoMenu6").disabled = false;
+            document.getElementById("VideoMenu8").disabled = false;
+            document.getElementById("VideoMenu9").disabled = false;
+            document.getElementById("VideoMenu16").disabled = false;
+            document.getElementById("VideoMenuFull").disabled = false;
+            document.getElementById("Captrue").disabled = false;
+            document.getElementById("textRecordDownloadPath").disabled = false;
+            document.getElementById("Browse").disabled = false;
+            parent.frames["frame_nav"].document.getElementById('Submit2').disabled = false;
+            parent.frames["frame_nav"].document.getElementById('Submit3').disabled = false;
+            document.getElementById("Submit").disabled = true;
+            //alert("登陆成功!");		
+        }
+        else if (login_stu == 1) {
+            alert("请输入正确的用户名！");//);
+        }
+        else if (login_stu == 2) {
+            alert("输入密码错误,请重新输入!");//);
+        }
+        else if (login_stu == -1) {
+            alert("登陆设备失败!");//);
+        }
+    }
+    function logout() {
+        IP_CAM.Logout();
+
+        document.getElementById("VideoMenu1").disabled = true;
+        document.getElementById("VideoMenu4").disabled = true;
+        document.getElementById("VideoMenu6").disabled = true;
+        document.getElementById("VideoMenu8").disabled = true;
+        document.getElementById("VideoMenu9").disabled = true;
+        document.getElementById("VideoMenu16").disabled = true;
+        document.getElementById("VideoMenuFull").disabled = true;
+        document.getElementById("Captrue").disabled = true;
+        document.getElementById("Submit").disabled = false;
+
+        document.getElementById("textRecordDownloadPath").disabled = true;
+        document.getElementById("Browse").disabled = true;
+
+
+    }
+    function OpenCHVideo() {
+        var channelNo = SelectChannel.selectedIndex + 1;
+        IP_CAM.OpenVideo(channelNo);
+    }
+    function CloseCHVideo() {
+        var channelNo = SelectChannel.selectedIndex + 1;
+        IP_CAM.CloseVideo(channelNo);
+    }
+    function VideoOne() {
+        IP_CAM.VideoOne();
+    }
+    function VideoFour() {
+        IP_CAM.VideoFour();
+    }
+    function VideoNine() {
+        IP_CAM.VideoNine();
+    }
+    function VideoSixteen() {
+        IP_CAM.VideoSixteen();
+    }
+    function videoEight() {
+        IP_CAM.videoEight();
+    }
+    function VideoArea() {
+        document.getElementById("VideoMenu1").disabled = false;
+        document.getElementById("VideoMenu4").disabled = false;
+        document.getElementById("VideoMenu6").disabled = false;
+        document.getElementById("VideoMenu8").disabled = false;
+        document.getElementById("VideoMenu9").disabled = false;
+        document.getElementById("VideoMenu16").disabled = false;
+        document.getElementById("VideoMenuFull").disabled = false;
+        IP_CAM.SwitchArea(0);
+    }
+    function RemoteArea() {
+        document.getElementById("VideoMenu1").disabled = true;
+        document.getElementById("VideoMenu4").disabled = true;
+        document.getElementById("VideoMenu6").disabled = true;
+        document.getElementById("VideoMenu8").disabled = true;
+        document.getElementById("VideoMenu9").disabled = true;
+        document.getElementById("VideoMenu16").disabled = true;
+        document.getElementById("VideoMenuFull").disabled = true;
+        IP_CAM.SwitchArea(1);
+    }
+    function Fullsrceen() {
+        IP_CAM.OnFullsrceen();
+    }
+    function videoSix() {
+        IP_CAM.VideoSix();
+    }
+
+    function DownLoadPic() {
+        var strlPath = document.getElementById("textRecordDownloadPath").value;
+        var varRet = IP_CAM.capturePic();
+        if (varRet == 0) {
+            alert('抓拍成功!');
+        }
+        else
+            alert("抓拍失败");
+
+    }
+
+    function upStart() {
+        var SpeedNo = selectSpeed.selectedIndex;
+        IP_CAM.PtzControl(1, SpeedNo * 11);
+    }
+    function upEnd() {
+        var SpeedNo = selectSpeed.selectedIndex;
+        IP_CAM.PtzControl(2, SpeedNo * 11);
+    }
+    function downStart() {
+        var SpeedNo = selectSpeed.selectedIndex;
+        IP_CAM.PtzControl(3, SpeedNo * 11);
+    }
+    function downEnd() {
+        var SpeedNo = selectSpeed.selectedIndex
+        IP_CAM.PtzControl(4, SpeedNo * 11);
+    }
+    function leftStart() {
+        var SpeedNo = selectSpeed.selectedIndex;
+        IP_CAM.PtzControl(5, SpeedNo * 11);
+    }
+    function leftEnd() {
+        var SpeedNo = selectSpeed.selectedIndex;
+        IP_CAM.PtzControl(6, SpeedNo * 11);
+    }
+    function rightStart() {
+        var SpeedNo = selectSpeed.selectedIndex;
+        IP_CAM.PtzControl(7, SpeedNo * 11);
+    }
+    function rightEnd() {
+        var SpeedNo = selectSpeed.selectedIndex;
+        IP_CAM.PtzControl(8, SpeedNo * 11);
+    }
+
+
+    function addStart() {
+        var SpeedNo = selectSpeed.selectedIndex;
+        var TypeNo = selectType.selectedIndex;
+        if (TypeNo == 0) //光圈
+        {
+            IP_CAM.PtzControl(28, SpeedNo);
+        }
+        else if (TypeNo == 1)  //聚焦
+        {
+            IP_CAM.PtzControl(24, SpeedNo);
+        }
+        else if (TypeNo == 2) //变倍
+        {
+            IP_CAM.PtzControl(20, SpeedNo);
+        }
+    }
+    function addEnd() {
+        var SpeedNo = selectSpeed.selectedIndex;
+        var TypeNo = selectType.selectedIndex;
+        if (TypeNo == 0) //光圈
+        {
+            IP_CAM.PtzControl(29, SpeedNo);
+        }
+        else if (TypeNo == 1)  //聚焦
+        {
+            IP_CAM.PtzControl(25, SpeedNo);
+        }
+        else if (TypeNo == 2) //变倍
+        {
+            IP_CAM.PtzControl(21, SpeedNo);
+        }
+    }
+    function subStart() {
+        var SpeedNo = selectSpeed.selectedIndex;
+        var TypeNo = selectType.selectedIndex;
+        if (TypeNo == 0) //光圈
+        {
+            IP_CAM.PtzControl(30, SpeedNo);
+        }
+        else if (TypeNo == 1)  //聚焦
+        {
+            IP_CAM.PtzControl(26, SpeedNo);
+        }
+        else if (TypeNo == 2) //变倍
+        {
+            IP_CAM.PtzControl(22, SpeedNo);
+        }
+    }
+    function subEnd() {
+        var SpeedNo = selectSpeed.selectedIndex;
+        var TypeNo = selectType.selectedIndex;
+        if (TypeNo == 0) //光圈
+        {
+            IP_CAM.PtzControl(31, SpeedNo);
+        }
+        else if (TypeNo == 1)  //聚焦
+        {
+            IP_CAM.PtzControl(27, SpeedNo);
+        }
+        else if (TypeNo == 2) //变倍
+        {
+            IP_CAM.PtzControl(23, SpeedNo);
+        }
+    }
+    function startSanf() {
+        var SpeedNo = selectSpeed.selectedIndex;
+        var SanfType = selectSanf.selectedIndex;
+        if (SanfType == 0) {
+            IP_CAM.PtzControl(39, SpeedNo);//自动线扫-(开始)
+        }
+        else if (SanfType == 1) {
+            IP_CAM.PtzControl(41, SpeedNo);//随机线扫-(开始)
+        }
+        else if (SanfType == 2) {
+            IP_CAM.PtzControl(43, SpeedNo);//巡航开始
+        }
+    }
+    function endSanf() {
+        var SpeedNo = selectSpeed.selectedIndex;
+        var SanfType = selectSanf.selectedIndex;
+        if (SanfType == 0) {
+            IP_CAM.PtzControl(40, SpeedNo);//自动线扫-(停止)
+        }
+        else if (SanfType == 1) {
+            IP_CAM.PtzControl(42, SpeedNo);//随机线扫-(停止)
+        }
+        else if (SanfType == 2) {
+            IP_CAM.PtzControl(44, SpeedNo);//巡航停止
+        }
+    }
+    function rePosition() {
+        var SpeedNo = selectSpeed.selectedIndex;
+        var SanfType = selectSanf.selectedIndex;
+        if (SanfType == 0) {
+            alert("自动线扫不支持复位!");
+        }
+        else if (SanfType == 1) {
+            alert("随机线扫不支持复位!");
+        }
+        else if (SanfType == 2) {
+            IP_CAM.PtzControl(45, SpeedNo);//巡航复位
+        }
+    }
+    function setPos() {
+        var PosNo = selectPos.selectedIndex + 1;
+        IP_CAM.PtzControl(17, PosNo);
+    }
+    function callPos() {
+        var PosNo = selectPos.selectedIndex + 1;
+        IP_CAM.PtzControl(18, PosNo);
+    }
+    function delPos() {
+        var PosNo = selectPos.selectedIndex + 1;
+        IP_CAM.PtzControl(19, PosNo);
+    }
+    function setAuxiliary() {
+        var PosNo = selectAuxiliary.selectedIndex + 1;
+        IP_CAM.PtzControl(37, PosNo);
+    }
+    function delAuxiliary() {
+        var PosNo = selectAuxiliary.selectedIndex + 1;
+        IP_CAM.PtzControl(38, PosNo);
+    }
+    function BrowserDirPath() {
+        var strPath;
+        strPath = IP_CAM.DirectoryDlg();
+
+        document.getElementById('textRecordDownloadPath').value = strPath;
+    }
+    function StartRec() {
+        var channelNo = SelectChannel.selectedIndex + 1;
+        IP_CAM.StartLocalRecord(channelNo);
+    }
+    function StopRec() {
+        var channelNo = SelectChannel.selectedIndex + 1;
+        IP_CAM.StopLocalRecord(0, channelNo);
+    }
+</script>
+<SCRIPT language="javascript" type="text/javascript" for="IP_CAM" event = "CreateTree(channelNum, serveInfo, channelInfo)">
+    var i = 0;
+    SelectChannel.options.length = 0;
+    //实际通道数
+    for (i = 0; i < channelNum; i++) {
+        var varItem;
+        var chaNo = i + 1;
+        varItem = new Option("通道" + chaNo, i);
+        SelectChannel.options.add(varItem);
+    }
+    document.getElementById('TextChannels').value = channelNum;
+</SCRIPT>
+<SCRIPT language="javascript" type="text/javascript" for="IP_CAM" 
+event = "SystemInfo(OutPutNum, ProberNum, iDev3511, iUserRight, iAdmin, iRatetype, iCCD, iCOMS, iDvrType, iHdisk, RFnum, iPTZEnable, iInfrared, iAdchipType, iSerialnum)">
+    document.getElementById('TextDevType').value = iDev3511;//0-3510， 1-3512；2-3520 3:3515 4:3516
+    document.getElementById('TextOutputs').value = OutPutNum;
+    document.getElementById('TextDetectors').value = ProberNum;
+</SCRIPT>
+
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<style type="text/css">
+<!--
+.select_style {	width:80px;
+	height:16px;
+}
+.STYLE10 {font-size: 14px}
+.STYLE11 {	font-size: 16px;
+	font-weight: bold;
+}
+body {
+	background-image: url(BJ.jpg);
+}
+-->
+</style>
+</head>
+<body onLoad="init();">
+<table width="82%" height="50%" border="0" cellpadding="3" cellspacing="1" style="font-size:12px">
+	<tr>
+		<td width="76%" height="25"><p>ＩＰ：
+      <input name="UserName2" type="text" id="IP" value="10.1.26.117" style="width:100px;height:19px;border:1PX solid #90B9D7;" />　　
+      用户名：
+        <input name="UserName" type="text" id="UserName" value="Admin" style="width:100px;height:19px;border:1PX solid #90B9D7;" />　
+        　密码： 
+        <input name="PassWord" type="password" id="PassWord" value="111111" onpaste="return false" style="width:100px;height:19px;border:1PX solid #90B9D7;" />
+        　　端口号：
+        <input name="LoginPort" type="text" id="LoginPort" value="9660"  onkeyup="value=value.replace(/[^\d]/g,'') "  style="width:100px;height:19px;border:1PX solid #90B9D7;" />
+    </p></td>
+    	<td colspan="3" align="center"><input type="submit" name="Submit" id="Submit" value="登陆"  onclick="login_OK();"/>
+        <input type="submit" name="Submit6" value="注销"  onclick="logout();"/></td>
+	</tr>
+	<tr>
+		<td width="76%" height="25" rowspan="11">
+			<object classid="CLSID:89DB509F-8681-4F1F-900B-B53745767991" width="660" height="500" align="baseline" id="IP_CAM"></object>	
+		</td>
+		<td colspan="3" align="center">通道：
+		  <select name="SelectChannel" id="SelectChannel" style="width:70px"></select>
+		</td>
+	</tr>
+  <tr>
+    <td colspan="3" align="center">
+        <input type="submit" name="Submit2" style="width:60px" value="打开视频"  onclick="OpenCHVideo();" />
+        <input type="submit" name="Submit23" style="width:50px" value="关闭"  onclick="CloseCHVideo();" />    </td>
+  </tr>
+  <tr>
+    <td width="8%" height="27"  valign="top">&nbsp;</td>
+    <td width="7%" height="27" align="center"><input type="submit" name="Submit5" value="上" style="width:40px" onMouseDown="upStart();" onMouseUp=""="upend();" /></td>
+    <td width="8%" valign="bottom"></td>
+  </tr>
+  <tr>
+    <td height="30" align="right">
+        <input type="submit" name="Submit53" style="width:40px" value="左" onMouseDown="leftStart();" onMouseUp="leftEnd();" />
+      </td>
+    <td height="30"><div align="center">
+      <select name="selectSpeed" id="selectSpeed" style="width:45px">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+      </select>
+    </div></td>
+    <td height="30" align="left">
+        <input type="submit" name="Submit54" style="width:40px" value="右"  onmousedown="rightStart();" onMouseUp="rightEnd();" />
+	</td>
+  </tr>
+  <tr>
+    <td height="27">&nbsp;</td>
+    <td height="27" valign="top"><div align="center">
+      <input type="submit" name="Submit52" style="width:40px" value="下"  onmousedown="downStart();" onMouseUp="downEnd();" />
+    </div></td>
+    <td height="27">&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="62" colspan="3"><p align="center">
+      <select name="selectType" id="selectType" style="width:80px;height:30px">
+        <option value="0">光圈</option>
+        <option value="1">聚焦</option>
+        <option value="2">变倍</option>
+        </select>
+      </p>
+      <p align="center">
+        <input type="submit" name="Submit55" style="width:30px" value="+"  onmousedown="addStart();" onMouseUp="addEnd();" />
+        <input type="submit" name="Submit56" style="width:30px" value="-"  onmousedown="subStart();" onMouseUp="subEnd();" />
+    </p></td>
+  </tr>
+  <tr>
+    <td height="65" colspan="3"><p align="center">
+      <select name="selectSanf" id="selectSanf" style="width:80px;height:30px">
+        <option value="0">自动线扫</option>
+        <option value="1">随机线扫</option>
+        <option value="2">巡航线扫</option>
+        </select>
+      </p>
+      <p align="center">
+        <input type="submit" name="Submit552" value="开始" onClick="startSanf();" />
+        <input type="submit" name="Submit553" value="停止" onClick="endSanf();" />
+        <input type="submit" name="Submit5532" value="复位" onClick="rePosition();" />
+    </p></td>
+  </tr>
+  <tr>
+    <td height="78" colspan="3"><div align="center">
+      <p>预置位
+        <select name="selectPos" id="selectPos" style="width:80px;height:30px">
+        </select>
+      </p>
+      <p>
+        <input type="submit" name="Submit5522" value="设置" onClick="setPos();" />
+        <input type="submit" name="Submit5523" value="调用" onClick="callPos();" />
+        <input type="submit" name="Submit5524" value="清除" onClick="delPos();" />
+        </p>
+    </div></td>
+  </tr>
+  <tr>
+    <td height="70" colspan="3"><p align="center">辅助开关
+        <select name="selectAuxiliary" id="selectAuxiliary" style="width:80px;height:30px">
+        </select>
+      </p>
+      <p align="center">  
+        <input type="submit" name="Submit55222" value="设置" onClick="setAuxiliary();" />
+         　 
+        <input type="submit" name="Submit55242" value="清除" onClick="delAuxiliary();" />
+        <script>
+            init();
+	    </script>
+    </p></td>
+  </tr>
+    <tr>
+    <td colspan="3"></td>
+  </tr>
+  <tr>
+    <td colspan="3"></td>
+  </tr>
+  <tr>
+  	<td width="76%">
+        <p>
+          <input type="submit" name="Submit3" id="VideoMenu1" value="1画面" disabled="disabled" onClick="VideoOne();"/>
+          <input type="submit" name="Submit32" id="VideoMenu4" value="4画面" disabled="disabled" onClick="VideoFour();" />
+          <input type="submit" name="Submit222" id="VideoMenu6" value="6画面" disabled="disabled" onClick="videoSix();" />
+          <input type="submit" name="Submit22" id="VideoMenu8" value="8画面"  disabled="disabled" onClick="videoEight();" />
+          <input type="submit" name="Submit33" id="VideoMenu9" value="9画面"  disabled="disabled" onClick="VideoNine();"/>
+          <input type="submit" name="Submit34" id="VideoMenu16" value="16画面" disabled="disabled" onClick="VideoSixteen();" />
+          <input type="submit" name="Submit43" id="VideoMenuFull" value="全屏"  disabled="disabled" onClick="Fullsrceen();"/>
+          <input type="submit" name="Submit422" id="Captrue" value="图片抓拍" disabled="disabled" onClick="DownLoadPic();"/>
+          <input type="submit" name="Submit4222" id="Submit422" value="开始录像" onClick="StartRec();"/>
+          <input type="submit" name="Submit4223" id="Submit4222" value="停止录像" onClick="StopRec();"/>
+		  <input name="textRecordDownloadPath" type="text" id="textRecordDownloadPath" style="height:18px; width:100px"/>
+		  <input type="submit" name="Submit423" id="Browse" value="目录" disabled="disabled" onClick="BrowserDirPath();"/>
+      </p>
+    <p>&nbsp;                </p></td>
+    <td height="70" colspan="3">
+        <input name="TextChannels" type="hidden" id="TextChannels" value="">
+        <input name="TextDevType" type="hidden" id="TextDevType" value="">
+		<input name="TextOutputs" type="hidden" id="TextOutputs" value="">
+		<input name="TextDetectors" type="hidden" id="TextDetectors" value="">
+    </td>
+  </tr>
+</table>
+</body>
+</html>
+
+<SCRIPT language="javascript" type="text/javascript" for="IP_CAM" event="NetWorkFlag(portNum,webPort,rtspPort,dhcpFlag,dnsManuFlag,isWireless,usedGateway)">
+    parent.frames["frame_para"].NetWorkFlagFunc(portNum, webPort, rtspPort, dhcpFlag, dnsManuFlag, isWireless, usedGateway);
+</SCRIPT>
+<SCRIPT language="javascript" type="text/javascript" for="IP_CAM" event="NetWorkIP(ipAddr,netMask,defGateway,broadAddr,macAddr,firstDnsAddr,secondDnsAddr,ipAddr2,netMask2,defGateway2,broadAddr2,macAddr2)">
+    parent.frames["frame_para"].NetWorkIPFunc(ipAddr, netMask, defGateway, broadAddr, macAddr, firstDnsAddr, secondDnsAddr, ipAddr2, netMask2, defGateway2, broadAddr2, macAddr2);
+</SCRIPT>
+
+<SCRIPT language="javascript" type="text/javascript" for="IP_CAM" event="RecordTime(dayFalg, startTime1, endTime1, startTime2, endTime2, startTime3, endTime3, startTime4, endTime4)">
+    parent.frames["frame_para"].RecordTimeFunc(dayFalg, startTime1, endTime1, startTime2, endTime2, startTime3, endTime3, startTime4, endTime4);
+</SCRIPT>
+
+<SCRIPT language="javascript" type="text/javascript" for="IP_CAM" event="TimeCapture(dayFalg, ftpFlag, emailFlag, interTime, startTime1, endTime1, startTime2, endTime2, startTime3, endTime3, startTime4, endTime4, baseName, iFileSuffix, iMaxNum)">
+    parent.frames["frame_para"].TimeCaptureFunc(dayFalg, ftpFlag, emailFlag, interTime, startTime1, endTime1, startTime2, endTime2, startTime3, endTime3, startTime4, endTime4, baseName, iFileSuffix, iMaxNum);
+</SCRIPT>
+
+<SCRIPT language="javascript" type="text/javascript" for="IP_CAM" event="CaptureMass(iMass)">
+    parent.frames["frame_para"].CaptureMassFunc(iMass);
+</SCRIPT>
+
+<SCRIPT language="javascript" type="text/javascript" for="IP_CAM" event="VideoMouveAlarm(moveFlags,  sensitiveLevel, intervalTime, recordTime, outputTime, beepTime, picNum, snapCH, recordCH, outputCH,  timeSec)">
+    parent.frames["frame_para"].VideoMouveAlarmFunc(moveFlags, sensitiveLevel, intervalTime, recordTime, outputTime, beepTime, picNum, snapCH, recordCH, outputCH, timeSec);
+</SCRIPT>
+
+<SCRIPT language="javascript" type="text/javascript" for="IP_CAM" event="CoverAlarm(coverFlags, sensitiveLevel, intervalTime, recordTime, outputTime, beepTime, snapCH, recordCH, outputCH,  timeSec)">
+    parent.frames["frame_para"].CoverAlarmFunc(coverFlags, sensitiveLevel, intervalTime, recordTime, outputTime, beepTime, snapCH, recordCH, outputCH, timeSec);
+</SCRIPT>
+
+<SCRIPT language="javascript" type="text/javascript" for="IP_CAM" event="VideoProberAlarm(moveFlags, proberType, intervalTime, recordTime, outputTime, beepTime, picNum, snapCH, recordCH, outputCH, timeSec)">
+    parent.frames["frame_para"].VideoProberAlarmFunc(moveFlags, proberType, intervalTime, recordTime, outputTime, beepTime, picNum, snapCH, recordCH, outputCH, timeSec);
+</SCRIPT>
+
+<SCRIPT language="javascript" type="text/javascript" for="IP_CAM" event="OSDTimeInfo(timeFlag, fontType, fontSize, timeX, timeY, timeFColorR,timeFColorG,timeFColorB, FColorValue,timeBColorR,timeBColorG,timeBColorB, BColorValue)">
+    parent.frames["frame_para"].OSDTimeInfoFunc(timeFlag, fontType, fontSize, timeX, timeY, timeFColorR, timeFColorG, timeFColorB, FColorValue, timeBColorR, timeBColorG, timeBColorB, BColorValue);
+</SCRIPT>
+
+<SCRIPT language="javascript" type="text/javascript" for="IP_CAM" event="OSDLogoInfo(logoFlag, logo, fontType, fontSize, logoX, logoY, logoFColorR,logoFColorG,logoFColorB, FColorValue,timeBColorR,timeBColorG,timeBColorB, BColorValue)">
+    parent.frames["frame_para"].OSDLogoInfoFunc(logoFlag, logo, fontType, fontSize, logoX, logoY, logoFColorR, logoFColorG, logoFColorB, FColorValue, timeBColorR, timeBColorG, timeBColorB, BColorValue);
+</SCRIPT>
+
+<SCRIPT language="javascript" type="text/javascript" for="IP_CAM" event="OSDUserDefInfo(defFlag, logo, fontType, fontSize, defX, defY, defFColorR,defFColorG,defFColorB, FColorValue,defBColorR,defBColorG,defBColorB, BColorValue)">
+    parent.frames["frame_para"].OSDUserDefInfoFunc(defFlag, logo, fontType, fontSize, defX, defY, defFColorR, defFColorG, defFColorB, FColorValue, defBColorR, defBColorG, defBColorB, BColorValue);
+</SCRIPT>
+

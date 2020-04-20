@@ -1,0 +1,93 @@
+﻿<div class="row">
+    <div class="col-sm-12">
+        <section class="panel" style="background-color: #f3f3f3;">
+
+            <div class="panel-body">
+                <div class="adv-table">
+                    <div class="row ">
+                        <div class="col-md-12">
+                            <div class="infoentry_info panel-body panel">
+                                <ul>
+                                    <li class="col-md-3">
+                                        <label class="col-md-4 mar_pad">设备编号：</label>
+                                        <input type="text" class="entry_input input_padding col-md-7" readonly value="{{WarningM.Device_ID}}" style="cursor: no-drop" />
+                                    </li>
+                                    <li class="col-md-3">
+                                        <label class="c_79b0 col-md-4 mar_pad" style="color: #262626;">事件机构：</label>
+                                        <input type="text" class="entry_input input_padding col-md-7" readonly value="{{WarningM.AGENCIES_Name}}" style="cursor: no-drop; width: 66%;" />
+
+                                    </li>
+                                    <li class="col-md-3">
+                                        <label class="c_79b0 col-md-4 mar_pad" style="color: #262626;">警告类型：</label>
+                                        <input type="text" class="entry_input input_padding col-md-7" readonly value="{{WarningM.Event_Type_Name}}" style="cursor: no-drop; width: 66%;" />
+
+                                    </li>
+                                </ul>
+                                <ul class="input_margin_top">
+                                    <li class="col-md-3">
+                                        <label class="col-md-4 mar_pad">事件方向：</label>
+                                        <input type="text" class="entry_input input_padding col-md-7" readonly value="{{WarningM.Event_Direction}}" style="width: 66%;" />
+
+                                    </li>
+                                    <li class="col-md-3">
+                                        <label class="col-md-4 mar_pad">事件桩号：</label>
+                                        <input type="text" class="entry_input input_padding col-md-7" readonly value="{{WarningM.Event_Stake}}" style="width: 66%;" />
+
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row ">
+                        <div class="col-md-12">
+                            <div class="infoentry_info panel-body panel">
+                                <ul>
+                                    <li class="col-md-3">
+                                        <label class="col-md-4 mar_pad">警告时间：</label>
+                                        <input size="16" type="text" class="entry_input input_padding col-md-7" readonly value="{{WarningM.Event_Time}}" style="width: 66%;">
+                                    </li>
+                                    <li class="col-md-3">
+                                        <label class="c_79b0 col-md-4 mar_pad" style="color: #262626;">处置状态：</label>
+                                        <input type="text" class="entry_input input_padding col-md-7" readonly value="{{WarningM.Deal_Flag_Name}}" style="cursor: no-drop; width: 66%;" />
+
+                                    </li>
+
+                                </ul>
+                                <ul class="input_margin_top">
+                                    <li class="col-md-3">
+                                        <label class="c_79b0 col-md-4 mar_pad" style="color: #262626;">警告等级：</label>
+                                        <input type="text" class="entry_input input_padding col-md-7" readonly value="{{WarningM.Event_Level_Name}}" style="cursor: no-drop; width: 66%;" />
+
+                                    </li>
+                                    <li class="col-md-3">
+                                        <label class="col-md-4 mar_pad">事件地址：</label>
+                                        <input type="text" class="entry_input input_padding col-md-7" readonly value="{{WarningM.Event_Location}}" style="width: 66%;" />
+
+                                    </li>
+
+                                </ul>
+                                <ul class="input_margin_top">
+                                    <li class="col-md-3" style="width: 50%;">
+                                        <label class="col-md-4 mar_pad" style="width: 16%;">事件描述：</label>
+                                        <textarea class="col-md-12 text_area" readonly value="{{WarningM.Event_Details}}" style="width: 80%;" />
+                                        
+                                    </li>
+                                    <li> <a class="excep_query query_but " style="cursor: pointer; width: auto; padding: 0 10px;" ng-if="PlanMessage.length>0&&WarningM.Deal_Flag==0" href="#PlanStart/{{OnePlanMessage.Plan_ID}}/{{WarningM.ID}}/{{WarningM.AGENCIES_ID}}/ZX">{{OnePlanMessage.Plan_Name}}</a>
+                <em class="excep_query query_but " style="cursor: pointer; width: auto; padding: 0 10px;" ng-if="PlanMessage.length==0&&WarningM.Deal_Flag==0">没有查到可匹配的预案</em>
+                <span class="excep_query query_but " style="cursor: pointer; width: auto; padding: 0 10px;" ng-if="WarningM.Deal_Flag==1||WarningM.Deal_Flag==2" ng-click="SelectLog(WarningM.ID)">查看日志</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                <span class="excep_query query_but " style="cursor: pointer; width:200px;"ng-repeat="d in data" ng-click="VideoWatch()">{{d.DEVICE_NAME}}{{d.DEVICE_STAKE}}</span>
+                    </div>
+               
+            </div>
+        </section>
+    </div>
+</div>
+

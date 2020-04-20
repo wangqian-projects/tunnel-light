@@ -1,0 +1,113 @@
+﻿ body {
+            -background: #fff;
+        }
+
+        .aut_conter {
+            width: 60%;
+            margin: 32px auto 84px;
+        }
+
+            .aut_conter li {
+                margin-top: 21px;
+            }
+
+                .aut_conter li .mar_pad {
+                    font-size: 16px;
+                    color: #7b7b7b;
+                }
+
+                .aut_conter li .entry_input {
+                    height: 40px;
+                }
+
+            .aut_conter .six > em {
+                height: 38px;
+                width: 86px;
+                border: 1px solid #c3c2c2;
+                text-align: center;
+                line-height: 38px;
+                font-size: 16px;
+                display: block;
+                float: left;
+                margin-right: 30px;
+            }
+
+        .six_hover {
+            height: 38px;
+            width: 86px;
+            border: 1px solid #6dc5a3!important;
+            text-align: center;
+            line-height: 38px;
+            font-size: 16px;
+            position: relative;
+        }
+
+            .six_hover:before {
+                content: " ";
+                background: url(../html_home/images/die.png) no-repeat;
+                width: 18px;
+                height: 18px;
+                background-size: cover;
+                display: block;
+                position: absolute;
+                bottom: 0;
+                right: 0;
+            }
+
+        .operate_aut > p {
+            width: 161px;
+            height: 38px;
+            border: 1px solid #c3c2c2;
+            text-indent: 10px;
+            line-height: 38px;
+            font-size: 16px;
+            display: block;
+            float: left;
+            margin-right: 30px;
+        }
+
+        .operateaut_hover {
+            width: 128px;
+            height: 38px;
+            border: 1px solid #6dc5a3!important;
+            position: relative;
+        }
+
+            .operateaut_hover:before {
+                content: " ";
+                background: url(../html_home/images/die.png) no-repeat;
+                width: 18px;
+                height: 18px;
+                background-size: cover;
+                display: block;
+                position: absolute;
+                bottom: 0;
+                right: 0;
+            }
+
+        .aut_tit {
+            display: block;
+            border-bottom: 1px solid #dedede;
+            font-size: 22px;
+            color: #6dc5a3;
+        }
+
+            .aut_tit em {
+                padding: 25px 0;
+                margin: 0 20px;
+                border-bottom: 3px solid #6dc5a3;
+                overflow: hidden;
+                display: block;
+                width: 180px;
+                text-align: center;
+                font-size: 22;
+                font-weight: bold;
+            }
+
+        .autok {
+            width: 120px;
+            height: 40px;
+            background: #6dc5a3;
+            border: none;
+            color: #fff;
+        }

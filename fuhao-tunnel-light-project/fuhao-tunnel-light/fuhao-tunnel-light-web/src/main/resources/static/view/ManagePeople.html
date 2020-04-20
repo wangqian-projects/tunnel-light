@@ -1,0 +1,78 @@
+﻿ <div class="row aut_conter">
+        <div class="col-lg-12 aut_tit" style="width: 1125px;background: #fff;margin-left: -225px;padding-left: 245px;">
+            <em>管理员权限分配</em>
+        </div>
+        <div class="col-md-12" style="width: 1155px;margin-left: -240px;">
+            <div class="infoentry_info panel-body panel">
+                <ul>
+                    <li class="col-md-12">
+                        <label class="c_79b0 col-md-2 mar_pad" style="width: 41%;text-align: right;">真实姓名：</label>
+                        <input type="text" class="entry_input input_padding col-md-4" ng-model="UserList.UserName" />
+                    </li>
+                    <li class="col-md-12">
+                        <label class="c_79b0 col-md-2 mar_pad" style="width: 41%;text-align: right;">性别：</label>
+                        <div class="six col-md-10 mar_pad" style="width: 33.333333%;margin-top: 5px;margin-left: 10px;">
+                            <!--	<em class="six_hover">男</em>
+								<em >女</em>-->
+                            <input type="radio" name="Sex" ng-model="UserList.Sex" value="男" ng-checked="{{UserList.Sex=='男'}}" style="margin-left: 8px;margin-right: 10px;"/>男
+                        <input type="radio" name="Sex" ng-model="UserList.Sex" value="女" ng-checked="{{UserList.Sex=='女'}}" style="margin-left: 8px;margin-right: 10px;"/>女
+						
+                        </div>
+                    </li>
+                    <li class="col-md-12">
+                        <label class="c_79b0 col-md-2 mar_pad" style="width: 41%;text-align: right;">年龄：</label>
+                        <input type="text" class="entry_input input_padding col-md-4" ng-model="UserList.Age" />
+                    </li>
+                    <li class="col-md-12">
+                        <label class="c_79b0 col-md-2 mar_pad" style="width: 41%;text-align: right;">联系方式：</label>
+                        <input type="text" class="entry_input input_padding col-md-4" ng-model="UserList.Phone" />
+                    </li>
+                    <li class="col-md-12">
+                        <label class="c_79b0 col-md-2 mar_pad" style="width: 41%;text-align: right;">所在单位 ：</label>
+                        <input type="text" class="entry_input input_padding col-md-5" ng-model="UserList.Company" style="width: 33.666667%;" />
+                    </li>
+                    <li class="col-md-12">
+                        <label class="c_79b0 col-md-2 mar_pad" style="width: 41%;text-align: right;">职务：</label>
+                        <input type="text" class="entry_input input_padding col-md-4" ng-model="UserList.Post" />
+                    </li>
+                    <li class="col-md-12">
+                        <label class="c_79b0 col-md-2 mar_pad" style="width: 41%;text-align: right;">邮箱：</label>
+                        <input type="text" class="entry_input input_padding col-md-4" ng-model="UserList.Email" />
+                    </li>
+                    <li class="col-md-12">
+                        <label class="c_79b0 col-md-2 mar_pad" style="width: 41%;text-align: right;">修改密码：</label>
+                        <input type="text" class="entry_input input_padding col-md-4" ng-model="UserList.Password" />
+                    </li>
+                    <li class="col-md-12">
+                        <label class="col-md-2 mar_pad" style="width: 41%;text-align: right;">用户角色：</label>
+                        <select class="entry_input col-md-4" ng-model="UserList.PowerID" ng-options="x.ID as x.PowerName for x in PowerNameList" ng-change="AllAgencies()"></select>
+                    </li>
+                    <li class="col-md-12">
+                        <div  class="col-md-10 operate_aut mar_pad"style="width: 55%;margin-left: 428px;">
+                            <!--ng-if="UserList.PowerID==4||UserList.PowerID==5||UserList.PowerID==6"-->
+                        <label class="c_79b0 col-md-2 mar_pad" style="width: 46%;margin-left: -266px;text-align: right;">选择用户可操作隧道：</label>                        
+                            <!--<p class="operateaut_hover">蚬子隧道</p>
+								<p>浪塘山1号隧道</p>
+								<p>浪塘山1号隧道</p>
+								<p>塘山3号隧道</p>
+								<p>满坪1号隧道</p>
+								<p>满坪2号隧道</p>
+								<p>公哇岭隧道</p>-->
+                            <p class="operateaut_hover" ng-repeat="d in AgenciesList"><!-- style="margin-top: 20px; margin-left: 10px;"-->
+                                <input type="checkbox" id="{{d.AGENCIES_ID}}" name="{{d.AGENCIES_NAME}}" ng-checked="UseAgenciesArray.indexOf(d.AGENCIES_ID)>-1" ng-click="updateSelection($event,d.AGENCIES_ID)" />
+                                <label style="text-align: left;">{{d.AGENCIES_NAME}}</label>
+                            </p>
+                        </div>
+                    </li>
+                    <li class="col-md-12">
+                        <label class="c_79b0 col-md-2 mar_pad"></label>
+                        <div class="col-md-4 mar_pad">
+                            <input type="button" value="确定" class="autok" ng-click="Update()" style="margin-left: 550px;"/>
+                        </div>
+                    </li>
+
+                </ul>
+
+            </div>
+        </div>
+    </div>
