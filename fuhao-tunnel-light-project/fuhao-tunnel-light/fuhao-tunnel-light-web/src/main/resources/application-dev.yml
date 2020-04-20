@@ -5,25 +5,25 @@ spring:
   datasource:
     druid:
       datasource1:
-        url: jdbc:mysql://mysql-cn-north-1-2954533874b54c2d.public.jcloud.com:3306/lsj_dz?useUnicode=true&characterEncoding=utf8&useSSL=false&tinyInt1isBit=true&zeroDateTimeBehavior=convertToNull&useAffectedRows=true&serverTimezone=UTC
-        username: lsj_beat
-        password: Lsj201805
+        url: jdbc:mysql://ip:3306/tunnel-light?useUnicode=true&characterEncoding=utf8&useSSL=false&tinyInt1isBit=true&zeroDateTimeBehavior=convertToNull&useAffectedRows=true&serverTimezone=UTC
+        username: root
+        password: 123456
         driver-class-name: com.mysql.cj.jdbc.Driver
         initialSize: 5
         minIdle: 5
         maxActive: 20
       datasource2:
-        url: jdbc:mysql://mysql-cn-north-1-2954533874b54c2d.public.jcloud.com:3306/lsj_dz?useUnicode=true&characterEncoding=utf8&useSSL=false&tinyInt1isBit=true&zeroDateTimeBehavior=convertToNull&useAffectedRows=true&serverTimezone=UTC
-        username: lsj_beat
-        password: Lsj201805
+        url: jdbc:mysql://ip:3306/tunnel-light?useUnicode=true&characterEncoding=utf8&useSSL=false&tinyInt1isBit=true&zeroDateTimeBehavior=convertToNull&useAffectedRows=true&serverTimezone=UTC
+        username: root
+        password: 123456
         driver-class-name: com.mysql.cj.jdbc.Driver
         initialSize: 5
         minIdle: 5
         maxActive: 20
       datasource3:
-        url: jdbc:mysql://mysql-cn-north-1-2954533874b54c2d.public.jcloud.com:3306/lsj_dz?useUnicode=true&characterEncoding=utf8&useSSL=false&tinyInt1isBit=true&zeroDateTimeBehavior=convertToNull&useAffectedRows=true&serverTimezone=UTC
-        username: lsj_beat
-        password: Lsj201805
+        url: jdbc:mysql://ip:3306/tunnel-light?useUnicode=true&characterEncoding=utf8&useSSL=false&tinyInt1isBit=true&zeroDateTimeBehavior=convertToNull&useAffectedRows=true&serverTimezone=UTC
+        username: root
+        password: 123456
         driver-class-name: com.mysql.cj.jdbc.Driver
         initialSize: 5
         minIdle: 5
